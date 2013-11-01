@@ -1,6 +1,10 @@
-%header#page_header
-  %nav
-    %p
-      You are logged in as...
-      = link_to 'Your account', ''
-      = link_to 'Logout', ''
+%header.page-header{role: 'banner'}
+  .row
+    .small-3.columns
+      = link_to(image_tag('bloccit.png', alt: 'Bloccit', class: 'logo', size: '64x64'))
+    .small-9.columns
+      %nav.utility
+        %p
+          You are logged in as...
+          = link_to 'Your account', ''
+          = link_to 'Logout', ''
