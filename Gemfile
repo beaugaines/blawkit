@@ -1,9 +1,17 @@
 source 'https://rubygems.org'
 
+# ruby version - to make Heroku happy
 ruby '2.0.0'
 
 gem 'rails', '3.2.14'
-gem 'sqlite3'
+
+group :development do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+end
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
