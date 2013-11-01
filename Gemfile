@@ -4,11 +4,11 @@ ruby '2.0.0'
 
 gem 'rails', '3.2.14'
 gem 'haml-rails'
+gem 'pg'
+gem 'devise'
 
 gem 'jquery-rails'
 gem 'toastr-rails'
-
-gem 'pg'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
