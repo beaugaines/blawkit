@@ -5,8 +5,25 @@
     .small-9.columns
       %nav.utility
         %p
-          You are logged in as...
-          = link_to 'Your account', ''
-          = link_to 'Logout', ''
           = link_to 'Home', welcome_index_path
           = link_to 'About', welcome_about_path
+        %ul
+          %li#login
+            %a#login-trigger{href: "#"}
+              Log in
+              %span ▼
+            #login-content
+              %form
+                %fieldset#inputs
+                  %input#username{name: "Email", placeholder: "Your email address", required: "", type: "email"}/
+                  %input#password{name: "Password", placeholder: "Password", required: "", type: "password"}/
+                %fieldset#actions
+                  %input#submit{type: "submit", value: "Log in"}/
+                  %label
+                    %input{checked: "checked", type: "checkbox"}/
+                    Keep me signed in
+          %li#signup
+            %a{href: ""} Sign up FREE
+
+
+        
