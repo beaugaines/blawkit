@@ -7,6 +7,7 @@ gem 'rails', '3.2.14'
 
 group :development do
   gem 'sqlite3'
+  gem 'pry-rails'
 end
 
 gem 'haml-rails'
