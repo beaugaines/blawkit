@@ -23,9 +23,10 @@
 
 %body
   = render 'layouts/header'
+  .main
+    = yield
 
-  = yield
-
+  = render 'layouts/footer'
   = javascript_include_tag "application"
 
 :plain
