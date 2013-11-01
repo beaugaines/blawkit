@@ -9,6 +9,9 @@ group :development do
   gem 'sqlite3'
 end
 
+gem 'haml-rails'
+gem 'zurb-foundation'
+
 group :production do
   gem 'pg'
 end
