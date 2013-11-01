@@ -11,6 +11,7 @@ end
 
 gem 'haml-rails'
 gem 'zurb-foundation'
+gem 'toastr-rails'
 
 group :production do
   gem 'pg'
