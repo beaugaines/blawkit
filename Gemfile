@@ -8,9 +8,7 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'toastr-rails'
 
-group :production do
-  gem 'pg'
-end
+gem 'pg'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -20,7 +18,6 @@ group :assets do
 end
 
 group :development do
-  gem 'sqlite3'
   gem 'pry-rails'
   gem 'rails-erd'
   gem 'better_errors'
