@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create },
     uniqueness: { case_sensitive: false }
 
-  validates :name, presence: true,
-    length: { in: 4..15 }
+  #validates :name, presence: true,
+    #length: { in: 4..15 }
 
 end
