@@ -1,8 +1,12 @@
 Bloccit::Application.routes.draw do
 
+ 
+
   get "welcome/about"
   
   devise_for :users
+
+  resource :dashboard, only: [:show]
 
   authenticated :user do
     root to: 'dashboards#show'
