@@ -12,6 +12,15 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def create
+    @post = Post.new(params[:post])
+    if @post.save
+      redirect_to @post, notice: 'Post saved'
+    else
+      render 'new', alert: 'There was an error saving your post.  Please try again.'
+  end
+  
+
   def edit
   end
 
