@@ -1,12 +1,33 @@
-%h1 Welcome to Bloccit!
-%p This is the xciting home page for this good app.  We hope you like it.
+.row
+  .small-8.small-centered.columns
+    .centered-content
+      %h1 Welcome to Bloccit!
+      %p This is the xciting home page for this good app.  We hope you like it.
 
-= link_to 'Sign in', '', data: { 'reveal-id' => 'signin-modal'}
-= link_to 'Sign up', '', data: { 'reveal-id' => 'signup-modal'}
+      .panel
+        .inline-list
+          = link_to 'Sign in', '', data: { 'reveal-id' => 'signin-modal'}, class: 'medium radius alert button'
+          = link_to 'Sign up', new_user_registration_path, data: { 'reveal-id' => 'signup-modal'}, class: 'medium radius alert button'
 
 #signin-modal.reveal-modal.medium
   %h2 Nice modal dude
 
 #signup-modal.reveal-modal.medium
-  %h2 Nice modal dude
+  %h2 Sign up
+  = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+    = devise_error_messages!
+    %div
+      = f.label :email
+      %br/
+      = f.email_field :email, :autofocus => true
+    %div
+      = f.label :password
+      %br/
+      = f.password_field :password
+    %div
+      = f.label :password_confirmation
+      %br/
+      = f.password_field :password_confirmation
+    %div= f.submit "Sign up", class: 'button medium radius'
+
  

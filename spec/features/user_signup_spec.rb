@@ -14,6 +14,7 @@ feature 'User signup', %q{
     fill_in 'Email', with: 'user@guy.com'
     fill_in 'Password', with: 'shhhhhh'
     fill_in 'Password confirmation', with: 'shhhhhh'
+    puts page.html
     click_button 'Sign up'
     expect(page).to have_content('You have signed up successfully.')
   end
