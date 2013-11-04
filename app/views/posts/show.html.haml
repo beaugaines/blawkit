@@ -1,3 +1,14 @@
-%h1= @post.title
-%p= @post.body
+.row
+  .small-11.small-centered.columns
+    = div_for(@post, class: 'post') do
+      %h3= @post.title
+      %p= @post.body
+
+    %p Comments:
+
+    - @post.comments.each do |comment|
+      = div_for(comment, class: 'comment') do
+        = comment.body
+
+
 
