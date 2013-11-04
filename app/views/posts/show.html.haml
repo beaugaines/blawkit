@@ -2,6 +2,7 @@
   .small-11.small-centered.columns
     = div_for(@post, class: 'post') do
       %h3= @post.title
+      %p= "Posted by #{@post.user.username}"
       %p= @post.body
 
     %p Comments:
