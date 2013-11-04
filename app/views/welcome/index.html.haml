@@ -6,9 +6,10 @@
 
       .panel
         .inline-list
-          = link_to 'Sign in', '', data: { 'reveal-id' => 'signin-modal'}, class: 'medium radius alert button'
-          = link_to 'Sign up', new_user_registration_path, data: { 'reveal-id' => 'signup-modal'}, class: 'medium radius alert button'
-          = link_to 'Sign up', new_user_registration_path
+          /= link_to 'Sign in', '', data: { 'reveal-id' => 'signin-modal'}, class: 'medium radius alert button'
+          = link_to 'Sign in', new_user_session_path, class: 'medium radius alert button'
+          /= link_to 'Sign up', new_user_registration_path, data: { 'reveal-id' => 'signup-modal'}, class: 'medium radius alert button'
+          = link_to 'Sign up', new_user_registration_path, class: 'medium radius alert button'
 
 #signin-modal.reveal-modal.medium
   %h2 Nice modal dude
