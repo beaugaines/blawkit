@@ -11,6 +11,9 @@ gem 'jquery-rails'
 gem 'toastr-rails'
 gem 'figaro'
 
+# skip asset plugin injection on Heroku
+gem 'rails_12factor'
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
