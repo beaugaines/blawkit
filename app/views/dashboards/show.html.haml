@@ -1,4 +1,7 @@
 %h1 Welcome to your dashboard
 %p
   You are signed in as
-  = @dashboard.username
+  = @dashboard.user.email
+
+= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'small radius alert button'
+

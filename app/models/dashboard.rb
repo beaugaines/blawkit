@@ -4,8 +4,10 @@ class Dashboard
     @user = user
   end
 
+  attr_reader :user
+
   def username
-    @user.name
+    user.name
   end
   
 
