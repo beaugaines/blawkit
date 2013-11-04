@@ -5,3 +5,18 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+require 'ffaker'
+
+rand(10..30).times do
+  p = Post.create(title: Faker::HipsterIpsum.words(rand(1..10)).join(" "),
+    body: Faker::HipsterIpsum.paragraphs(rand(1..4)).join("\n"))
+  rand(3..5).times do
+    p.comments.create(body: Faker::HipsterIpsum.paragraphs(rand(1..3)).join("\n"))
+  end
+end
+
+puts 'Seed finished'
+
+puts "#{Post.count} posts created"
+puts "#{Comment.count} comments created"
