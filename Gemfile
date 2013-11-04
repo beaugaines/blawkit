@@ -9,6 +9,7 @@ gem 'devise'
 
 gem 'jquery-rails'
 gem 'toastr-rails'
+gem 'figaro'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

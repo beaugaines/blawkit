@@ -2,15 +2,10 @@ Bloccit::Application.routes.draw do
 
  
 
-  get "posts/index"
 
-  get "posts/show"
+  resources :posts
 
-  get "posts/new"
-
-  get "posts/edit"
-
-  get "welcome/about"
+  get 'about', to: 'welcome#about'
   
   devise_for :users
 
