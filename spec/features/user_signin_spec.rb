@@ -9,9 +9,13 @@ feature 'User signin', %q{
 } do
 
   before do
-    
-    #let(:user) { create(:user) } 
+    @user = create(:user)
   end
 
+  scenario 'signin and redirect to dashboard' do
+    login(@user)
+    expect(current_path).to eql dashboard_path
+    expect(page).to have_content 'Welcome to your dashboard'
+  end
 
 end
