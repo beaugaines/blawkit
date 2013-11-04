@@ -6,14 +6,14 @@ class User < ActiveRecord::Base
          :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
   validates :email, presence: true,
     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create },
     uniqueness: { case_sensitive: false }
 
-  #validates :name, presence: true,
-    #length: { in: 4..15 }
+  validates :username, presence: true,
+    length: { in: 4..15 }
 
 end

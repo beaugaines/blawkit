@@ -7,9 +7,8 @@ class Dashboard
   attr_reader :user
 
   def username
-    user.name
+    user.username
   end
   
-
 end
   
