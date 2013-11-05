@@ -4,11 +4,27 @@ User.delete_all
 Post.delete_all
 Comment.delete_all
 
-class User
+module SeedMethods
   def skip_confirm
     skip_confirmation!
     save!
   end
+
+  def set_random_created_at
+    update_attribute(:created_at, Time.now - rand(600..31536000))
+  end
+end
+
+class User
+  include SeedMethods
+end
+
+class Post
+  include SeedMethods
+end
+
+class Comment
+  include SeedMethods
 end
 
 u = User.new(username: 'blawkitter', email: 'guy@email.com', password: 'password')
@@ -43,15 +59,15 @@ rand(10..30).times do
   p = u.posts.create(title: Faker::HipsterIpsum.words(rand(1..10)).join(" ").titleize,
     body: Faker::HipsterIpsum.paragraphs(rand(1..4)).join("\n"),
     topic: topic)
-  p.update_attribute(:created_at, Time.now - rand(600..31536000))
+  p.set_random_created_at
  
   rand(3..5).times do
     c = p.comments.create(body: Faker::HipsterIpsum.paragraphs(rand(1..3)).join("\n"), user: USERS.sample)
-    c.update_attribute(:created_at, Time.now - rand(600..31536000))
+    c.set_random_created_at
   end
   rand(0..1).times do
     c = p.comments.create(body: 'This comment is inappropriate and will be removed!', user: a)
-    c.update_attribute(:created_at, Time.now - rand(600..31536000))
+    c.set_random_created_at
   end
 end
 
