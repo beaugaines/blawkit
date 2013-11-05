@@ -6,6 +6,7 @@ gem 'rails', '3.2.14'
 gem 'haml-rails'
 gem 'pg'
 gem 'devise'
+gem 'cancan'
 
 gem 'jquery-rails'
 gem 'toastr-rails'

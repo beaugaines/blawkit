@@ -11,10 +11,12 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    authorize! :create, Post, message: 'You need to be a member to create a post'
   end
 
   def create
     @post = current_user.posts.build(params[:post])
+    authorize! :create, @post, message: 'You need to be signed up to do that'
     if @post.save
       redirect_to @post, notice: 'Post saved'
     else
@@ -25,9 +27,11 @@ class PostsController < ApplicationController
 
   def edit
     render
+    authorize! :edit, @post, message: 'You need to own the post to edit it'
   end
 
   def update
+    authorize! :update, @post, message: 'You ned to own the post to edit it'
     if @post.update_attributes(params[:post])
       redirect_to @post, notice: 'Post updated'
     else
