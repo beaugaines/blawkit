@@ -3,6 +3,7 @@ require 'ffaker'
 User.delete_all
 Post.delete_all
 Comment.delete_all
+Topic.delete_all
 
 module SeedMethods
   def skip_confirm
@@ -29,18 +30,18 @@ end
 
 u = User.new(username: 'blawkitter', email: 'guy@email.com', password: 'password')
 u.skip_confirm
-u.update_attribute(role: 'moderator')
+u.update_attributes(role: 'moderator')
 
 u2 = User.new(username: 'kittblawker', email: 'othaguy@email.com', password: 'password')
 u2.skip_confirm
 
 me = User.new(username: 'beaugaines', email: 'beaugaines@yahoo.com', password: 'password')
 me.skip_confirm
-u.update_attribute(role: 'admin')
+u.update_attributes(role: 'admin')
 
 a = User.new(username: 'admin', email: 'admin@blawkit.com', password: 'password')
 a.skip_confirm
-u.update_attribute(role: 'admin')
+u.update_attributes(role: 'admin')
 
 users = [u, u2, me]
 
@@ -54,7 +55,7 @@ topics = []
 end
 
 
-rand(10..30).times do
+rand(30..50).times do
   topic = topics.sample
   user = users.sample
   p = user.posts.create(title: Faker::HipsterIpsum.words(rand(1..10)).join(" ").titleize,
