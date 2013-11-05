@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_filter :ensure_post, only: [:edit, :show]
+  before_filter :ensure_topic
   before_filter :authenticate_user!
 
   # def index
@@ -50,7 +51,16 @@ class PostsController < ApplicationController
   def post
     @post ||= Post.find_by_id(params[:id])
   end
+
+  def ensure_topic
+    redirect_to topic_posts_path, alert: 'No such post' unless topic
+  end
+
+  def topic
+    @topic ||= Topic.find(params[:topic_id])
+  end
   
   helper_method :post
+  helper_method :topic
   
 end

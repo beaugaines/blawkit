@@ -6,7 +6,7 @@
       %p= "Posted by #{@post.user.username}"
       %p= @post.body
       - if can? :edit, @post
-        = link_to 'Edit post', edit_post_path(@post), class: 'small radius button'
+        = link_to 'Edit post', edit_topic_post_path(@topic, @post), class: 'small radius button'
 
     %p Comments:
 

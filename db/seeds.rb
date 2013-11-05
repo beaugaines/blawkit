@@ -72,7 +72,6 @@ rand(30..50).times do
   end
   rand(0..1).times do
     c = p.comments.create(body: 'This comment is inappropriate and will be removed!', user: a)
-    c.set_random_created_at
   end
 end
 
