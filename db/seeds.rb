@@ -46,10 +46,12 @@ rand(10..30).times do
   p.update_attribute(:created_at, Time.now - rand(600..31536000))
  
   rand(3..5).times do
-    p.comments.create(body: Faker::HipsterIpsum.paragraphs(rand(1..3)).join("\n"), user: USERS.sample)
+    c = p.comments.create(body: Faker::HipsterIpsum.paragraphs(rand(1..3)).join("\n"), user: USERS.sample)
+    c.update_attribute(:created_at, Time.now - rand(600..31536000))
   end
   rand(0..1).times do
-    p.comments.create(body: 'This comment is inappropriate and will be removed!', user: a)
+    c = p.comments.create(body: 'This comment is inappropriate and will be removed!', user: a)
+    c.update_attribute(:created_at, Time.now - rand(600..31536000))
   end
 end
 
