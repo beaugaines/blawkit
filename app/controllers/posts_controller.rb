@@ -18,13 +18,23 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to @post, notice: 'Post saved'
     else
-      render 'new', alert: 'There was an error saving your post.  Please try again.'
+      render :new, alert: 'There was an error saving your post.  Please try again.'
     end
   end
   
 
   def edit
+    render
   end
+
+  def update
+    if @post.update_attributes(params[:post])
+      redirect_to @post, notice: 'Post updated'
+    else
+      render :edit, alert: 'Post not updated; try again'
+    end
+  end
+  
 
   private
 
