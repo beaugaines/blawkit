@@ -2,4 +2,13 @@
 %h1 All posts
 
 - @posts.each do |post|
-  %p= link_to post.title, post
+  = div_for(post, class: 'post') do
+    %p= link_to post.title, post
+    %small
+      submitted
+      = time_ago_in_words(post.created_at)
+      by
+      = post.username
+      %br/ 
+      = post.comments.count
+      comments
