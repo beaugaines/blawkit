@@ -13,25 +13,43 @@ end
 
 u = User.new(username: 'blawkitter', email: 'guy@email.com', password: 'password')
 u.skip_confirm
+u.update_attribute(:role, 'moderator')
 
 u2 = User.new(username: 'kittblawker', email: 'othaguy@email.com', password: 'password')
 u2.skip_confirm
 
+me = User.new(username: 'beaugaines', email: 'beaugaines@yahoo.com', password: 'password')
+me.skip_confirm
+u.update_attribute(:role, 'admin')
+
 a = User.new(username: 'admin', email: 'admin@blawkit.com', password: 'password')
 a.skip_confirm
+u.update_attribute(:role, 'admin')
 
 USERS = [u, u2]
 
+# hipster topics
+topics = []
+15.times do
+  topics << Topic.create(
+    name: Faker::HipsterIpsum.words(rand(1..5)).join(" "),
+    description: Faker::HipsterIpsum.paragraphs(rand(1..3))
+  )
+end
+
+
 rand(10..30).times do
+  topic = topics.sample
   p = u.posts.create(title: Faker::HipsterIpsum.words(rand(1..10)).join(" ").titleize,
-    body: Faker::HipsterIpsum.paragraphs(rand(1..4)).join("\n"))
+    body: Faker::HipsterIpsum.paragraphs(rand(1..4)).join("\n"),
+    topic: topic)
   p.update_attribute(:created_at, Time.now - rand(600..31536000))
  
   rand(3..5).times do
-    p.comments.create(body: Faker::HipsterIpsum.paragraphs(rand(1..3)).join("\n"), user_id: USERS.sample.id)
+    p.comments.create(body: Faker::HipsterIpsum.paragraphs(rand(1..3)).join("\n"), user: USERS.sample)
   end
   rand(0..1).times do
-    p.comments.create(body: 'This comment is inappropriate and will be removed!', user_id: a.id)
+    p.comments.create(body: 'This comment is inappropriate and will be removed!', user: a)
   end
 end
 
