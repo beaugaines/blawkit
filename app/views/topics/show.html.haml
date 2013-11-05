@@ -1,2 +1,8 @@
-%h1 Topics#show
-%p Find me in app/views/topics/show.html.haml
+%h1 Topic
+= link_to 'Return to topics...', topics_path
+.row
+  .small-11.small-centered.columns
+    = div_for(@topic, class: 'topic') do
+      %h3= @topic.name
+      /%p= "Added by #{@topic.user.username}"
+      %p= @topic.description
