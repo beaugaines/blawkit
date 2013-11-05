@@ -18,6 +18,7 @@ class PostsController < ApplicationController
       redirect_to @post, notice: 'Post saved'
     else
       render 'new', alert: 'There was an error saving your post.  Please try again.'
+    end
   end
   
 
