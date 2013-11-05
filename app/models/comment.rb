@@ -4,4 +4,6 @@ class Comment < ActiveRecord::Base
   attr_accessible :body, :user, :post
 
   delegate :username, to: :user
+
+  default_scope order('created_at DESC')
 end

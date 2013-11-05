@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_filter :ensure_post
 
   def create
-    @comment = current_user.comments.build(params[:comment].merge!(post_id: @post.id))
+    @comment = current_user.comments.build(params[:comment].merge!(post: @post))
     if @comment.save
       redirect_to @post, notice: 'Comment added'
     else
