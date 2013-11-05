@@ -7,6 +7,7 @@ class TopicsController < ApplicationController
 
   def new
     @topic = Topic.new
+    authorize! :create, @topic, message: 'You must be admin to do that'
   end
 
   def create

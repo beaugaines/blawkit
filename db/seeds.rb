@@ -29,18 +29,18 @@ end
 
 u = User.new(username: 'blawkitter', email: 'guy@email.com', password: 'password')
 u.skip_confirm
-u.update_attribute(:role, 'moderator')
+u.update_attribute(role: 'moderator')
 
 u2 = User.new(username: 'kittblawker', email: 'othaguy@email.com', password: 'password')
 u2.skip_confirm
 
 me = User.new(username: 'beaugaines', email: 'beaugaines@yahoo.com', password: 'password')
 me.skip_confirm
-u.update_attribute(:role, 'admin')
+u.update_attribute(role: 'admin')
 
 a = User.new(username: 'admin', email: 'admin@blawkit.com', password: 'password')
 a.skip_confirm
-u.update_attribute(:role, 'admin')
+u.update_attribute(role: 'admin')
 
 users = [u, u2, me]
 
