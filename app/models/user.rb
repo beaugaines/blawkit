@@ -8,8 +8,10 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
 
+  before_create :set_member
+
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :role
   # attr_accessible :title, :body
 
   validates :email, presence: true,
@@ -18,5 +20,16 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true,
     length: { in: 4..15 }
+
+  # cancan roles
+  ROLES = %w(member moderator admin)
+
+  def role?(base_role)
+    role.nil? ? false : ROLES.index(base_role.to_s) <= ROLES.index(role)
+  end
+
+  def set_member
+    self.role = 'member'    
+  end
 
 end
