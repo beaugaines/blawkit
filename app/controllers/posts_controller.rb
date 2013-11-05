@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = current_user.comments.build
   end
 
   def new
@@ -13,7 +14,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params[:post])
+    @post = current_user.posts.build(params[:post])
     if @post.save
       redirect_to @post, notice: 'Post saved'
     else
