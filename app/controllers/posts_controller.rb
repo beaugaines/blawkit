@@ -16,6 +16,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(params[:post])
+    authorize! :create, @post, message: 'You need to be signed up to do that'
     if @post.save
       redirect_to @post, notice: 'Post saved'
     else

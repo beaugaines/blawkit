@@ -1,6 +1,8 @@
 
 %h1 All posts
-
+- if can? :create, Post
+  %p Want to post yourself?
+  = link_to 'New post', new_post_path, class: 'medium radius button'
 - @posts.each do |post|
   = div_for(post, class: 'post') do
     %p= link_to post.title, post
