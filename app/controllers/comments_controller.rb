@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
   private
 
   def ensure_post
-    redirect_to posts_path, alert: 'No such post' unless post
+    redirect_to topic_posts_path, alert: 'No such post' unless post
   end
 
   def post

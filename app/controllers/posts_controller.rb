@@ -2,9 +2,9 @@ class PostsController < ApplicationController
   before_filter :ensure_post, only: [:edit, :show]
   before_filter :authenticate_user!
 
-  def index
-    @posts = Post.all
-  end
+  # def index
+  #   @posts = Post.all
+  # end
 
   def show
     @comment = current_user.comments.build
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   private
 
   def ensure_post
-    redirect_to posts_path, alert: 'No such post' unless post
+    redirect_to topic_posts_path, alert: 'No such post' unless post
   end
 
   def post

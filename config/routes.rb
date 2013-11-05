@@ -6,7 +6,9 @@ Bloccit::Application.routes.draw do
     resources :comments, shallow: true
   end
 
-  resources :topics
+  resources :topics do
+    resources :posts, except: [:index]
+  end
   
   devise_for :users
 
