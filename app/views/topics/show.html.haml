@@ -1,8 +1,23 @@
-%h1 Topic
+%h2= "#{@topic.name.titleize}"
+- if can? :update, @topic
+  = link_to 'Edit topic', edit_topic_path(@topic)
+%br/ 
 = link_to 'Return to topics...', topics_path
+
 .row
   .small-11.small-centered.columns
     = div_for(@topic, class: 'topic') do
       %h3= @topic.name
       /%p= "Added by #{@topic.user.username}"
       %p= @topic.description
+  .small-10.small-centered.columns
+    - if @posts.any?
+      %h3 Posts on this topic
+      - @posts.each do |post|
+        = div_for(post, class: 'post') do
+          %h3= post.title
+          %p= "Posted by #{post.user.username}"
+          %p= post.body
+          - if can? :edit, post
+            = link_to 'Edit post', edit_post_path(post), class: 'small radius button'
+ 

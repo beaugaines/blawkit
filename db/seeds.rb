@@ -48,8 +48,8 @@ users = [u, u2, me]
 topics = []
 15.times do
   topics << Topic.create(
-    name: Faker::HipsterIpsum.words(rand(1..5)).join(" "),
-    description: Faker::HipsterIpsum.paragraphs(rand(1..3))
+    name: Faker::HipsterIpsum.words(rand(1..5)).join(" ").titleize,
+    description: Faker::HipsterIpsum.paragraphs(rand(1..3)).join("\n")
   )
 end
 
