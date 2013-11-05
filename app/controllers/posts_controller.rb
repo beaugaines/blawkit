@@ -27,9 +27,11 @@ class PostsController < ApplicationController
 
   def edit
     render
+    authorize! :edit, @post, message: 'You need to own the post to edit it'
   end
 
   def update
+    authorize! :update, @post, message: 'You ned to own the post to edit it'
     if @post.update_attributes(params[:post])
       redirect_to @post, notice: 'Post updated'
     else
