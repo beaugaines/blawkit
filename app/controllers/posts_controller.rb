@@ -3,10 +3,6 @@ class PostsController < ApplicationController
   before_filter :ensure_topic
   before_filter :authenticate_user!
 
-  # def index
-  #   @posts = Post.all
-  # end
-
   def show
     @comment = current_user.comments.build
   end
@@ -18,6 +14,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(params[:post])
+    @post.topic = @topic
     authorize! :create, @post, message: 'You need to be signed up to do that'
     if @post.save
       redirect_to @post, notice: 'Post saved'
