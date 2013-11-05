@@ -22,7 +22,7 @@ module ApplicationHelper
     flash.each do |type, message|
       if message
         type = check_flash_type type
-        text = javascript_tag("toastr.#{type}('#{message}')")
+        text = javascript_tag("toastr.#{type}('#{message}');")
         flash_messages << text.html_safe
       end
     end
@@ -32,6 +32,7 @@ module ApplicationHelper
   def check_flash_type type
     return :success if type == :notice
     return :error if type == :alert
+    return :error if type == :error
   end
   
 end

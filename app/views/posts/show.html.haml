@@ -4,6 +4,7 @@
       %h3= @post.title
       %p= "Posted by #{@post.user.username}"
       %p= @post.body
+      = link_to 'Edit post', edit_post_path(@post), class: 'small radius button'
 
     %p Comments:
 
@@ -11,6 +12,9 @@
       = div_for(comment, class: 'comment') do
         %p= "Posted by #{comment.username} #{time_ago_in_words(comment.created_at)} ago"
         = comment.body
-
+    %p Add a comment
+    = form_for [@post, @comment] do |f|
+      = f.text_area :body, class: 'medium-text-box'
+      = f.submit 'Add comment', class: 'medium radius secondary button'
 
 

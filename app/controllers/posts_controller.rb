@@ -6,14 +6,35 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = current_user.comments.build
   end
 
   def new
     @post = Post.new
   end
 
-  def edit
+  def create
+    @post = current_user.posts.build(params[:post])
+    if @post.save
+      redirect_to @post, notice: 'Post saved'
+    else
+      render :new, alert: 'There was an error saving your post.  Please try again.'
+    end
   end
+  
+
+  def edit
+    render
+  end
+
+  def update
+    if @post.update_attributes(params[:post])
+      redirect_to @post, notice: 'Post updated'
+    else
+      render :edit, alert: 'Post not updated; try again'
+    end
+  end
+  
 
   private
 

@@ -1,9 +1,10 @@
 Bloccit::Application.routes.draw do
 
- 
+  get "comments/create"
 
-
-  resources :posts
+  resources :posts do
+    resources :comments, shallow: true
+  end
 
   get 'about', to: 'welcome#about'
   

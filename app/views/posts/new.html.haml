@@ -1,2 +1,11 @@
-%h1 Posts#new
-%p Find me in app/views/posts/new.html.haml
+%h1 New post
+.row
+  .large-4.columns
+    %p Guidelines for new posts
+    %ul 
+      %li Make sure content is appropriate
+      %li Blah blah blah
+      %li Yakety smakety
+      %li Etc, etc, etc.
+  .large-8.columns
+    = render 'form'
