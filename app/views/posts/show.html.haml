@@ -1,4 +1,4 @@
-= link_to 'Return to posts...', posts_path
+= link_to 'Return to posts...', topic_posts_path
 .row
   .small-11.small-centered.columns
     = div_for(@post, class: 'post') do
@@ -6,7 +6,7 @@
       %p= "Posted by #{@post.user.username}"
       %p= @post.body
       - if can? :edit, @post
-        = link_to 'Edit post', edit_post_path(@post), class: 'small radius button'
+        = link_to 'Edit post', edit_topic_post_path(@topic, @post), class: 'small radius button'
 
     %p Comments:
 

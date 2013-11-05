@@ -1,9 +1,7 @@
 class PostsController < ApplicationController
   before_filter :ensure_post, only: [:edit, :show]
-
-  def index
-    @posts = Post.all
-  end
+  before_filter :ensure_topic
+  before_filter :authenticate_user!
 
   def show
     @comment = current_user.comments.build
@@ -16,6 +14,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(params[:post])
+    @post.topic = @topic
     authorize! :create, @post, message: 'You need to be signed up to do that'
     if @post.save
       redirect_to @post, notice: 'Post saved'
@@ -43,13 +42,22 @@ class PostsController < ApplicationController
   private
 
   def ensure_post
-    redirect_to posts_path, alert: 'No such post' unless post
+    redirect_to topic_posts_path, alert: 'No such post' unless post
   end
 
   def post
     @post ||= Post.find_by_id(params[:id])
   end
+
+  def ensure_topic
+    redirect_to topic_posts_path, alert: 'No such post' unless topic
+  end
+
+  def topic
+    @topic ||= Topic.find(params[:topic_id])
+  end
   
   helper_method :post
+  helper_method :topic
   
 end

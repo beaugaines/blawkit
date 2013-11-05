@@ -1,12 +1,14 @@
 Bloccit::Application.routes.draw do
 
-  get "comments/create"
+  get 'about', to: 'welcome#about'
 
   resources :posts do
     resources :comments, shallow: true
   end
 
-  get 'about', to: 'welcome#about'
+  resources :topics do
+    resources :posts, except: [:index]
+  end
   
   devise_for :users
 

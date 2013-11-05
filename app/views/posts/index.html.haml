@@ -7,9 +7,9 @@
   = div_for(post, class: 'post') do
     %p= link_to post.title, post
     %small
-      submitted
+      updated
       = time_ago_in_words(post.created_at)
-      by
+      ago by
       = post.username
       %br/ 
       = post.comments.count
