@@ -17,7 +17,7 @@ class PostsController < ApplicationController
     @post.topic = @topic
     authorize! :create, @post, message: 'You need to be signed up to do that'
     if @post.save
-      redirect_to @post, notice: 'Post saved'
+      redirect_to [@topic, @post], notice: 'Post saved'
     else
       render :new, alert: 'There was an error saving your post.  Please try again.'
     end

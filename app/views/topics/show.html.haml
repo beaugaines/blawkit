@@ -14,7 +14,7 @@
       %h3 Posts on this topic
       - @posts.each do |post|
         = div_for(post, class: 'post') do
-          %h3= link_to post.title, [@topic, post]
+          %h3= link_to(markdown post.title), [@topic, post]
           %p
             updated
             = time_ago_in_words(post.created_at)
@@ -24,7 +24,7 @@
             = post.comments.count
             comments
 
-          %p= post.body
+          %p= markdown post.body
           - if can? :edit, post
             = link_to 'Edit post', edit_post_path(post), class: 'small radius button'
   - if can? :create, Post

@@ -13,6 +13,14 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def markdown text
+    renderer = Redcarpet::Render::HTML.new
+    extensions = { fenced_code_blocks: true, strikethrough: true }
+    redcarpet = Redcarpet::Markdown.new(renderer, extensions)
+    (redcarpet.render text).html_safe
+  end
+  
+
   def toastr_flash
     flash_messages = process_flash flash
   end
