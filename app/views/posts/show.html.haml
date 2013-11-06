@@ -2,9 +2,9 @@
 .row
   .small-11.small-centered.columns
     = div_for(@post, class: 'post') do
-      %h3= @post.title
+      %h3= markdown @post.title
       %p= "Posted by #{@post.user.username}"
-      %p= @post.body
+      %p= markdown @post.body
       - if can? :edit, @post
         = link_to 'Edit post', edit_topic_post_path(@topic, @post), class: 'small radius button'
 
