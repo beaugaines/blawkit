@@ -12,6 +12,7 @@ gem 'jquery-rails'
 gem 'toastr-rails'
 gem 'figaro'
 gem 'ffaker'
+gem 'redcarpet'
 
 # skip asset plugin injection on Heroku
 gem 'rails_12factor'

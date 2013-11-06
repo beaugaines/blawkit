@@ -7,4 +7,9 @@ class Post < ActiveRecord::Base
   delegate :username, to: :user
 
   default_scope order('created_at DESC')
+
+  validates :title, length: { minimum: 5 }, presence: true
+  validates :title, length: { minimum: 20 }, presence: true
+  validates :topic, presence: true
+  validates :user, presence: true
 end
