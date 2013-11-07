@@ -15,6 +15,7 @@ gem 'ffaker'
 gem 'redcarpet'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'fog'
 
 # skip asset plugin injection on Heroku
 gem 'rails_12factor'
