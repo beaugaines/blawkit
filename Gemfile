@@ -19,6 +19,9 @@ gem 'mini_magick'
 gem 'fog'
 gem 'unf'
 
+# pagination
+gem 'will_paginate'
+
 # skip asset plugin injection on Heroku
 gem 'rails_12factor'
 
@@ -35,10 +38,10 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
+  gem 'quiet_assets'
 end
 
 # various
-gem 'quiet_assets'
 gem 'ffaker'
 
 group :test do
