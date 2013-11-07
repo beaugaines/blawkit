@@ -4,6 +4,8 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :topic
 
+  mount_uploader :image, ImageUploader
+
   delegate :username, to: :user
 
   default_scope order('created_at DESC')
