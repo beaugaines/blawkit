@@ -10,9 +10,11 @@ class User < ActiveRecord::Base
 
   before_create :set_member
 
+  mount_uploader :avatar, AvatarUploader
+
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :role
-  # attr_accessible :title, :body
+  attr_accessible :username, :email, :password, :password_confirmation,
+    :remember_me, :role, :avatar
 
   validates :email, presence: true,
     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create },
