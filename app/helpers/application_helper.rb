@@ -14,7 +14,7 @@ module ApplicationHelper
   end
 
   def show_user_avatar
-    image_tag(current_user.avatar.small.url) if current_user.avatar?
+    image_tag(current_user.avatar.medium.url) if current_user.avatar?
   end
   
 
