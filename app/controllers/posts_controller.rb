@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :ensure_post, only: [:edit, :show]
+  before_filter :ensure_post, only: [:edit, :update, :show]
   before_filter :ensure_topic
   before_filter :authenticate_user!
 
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   def update
     authorize! :update, @post, message: 'You ned to own the post to edit it'
     if @post.update_attributes(params[:post])
-      redirect_to @post, notice: 'Post updated'
+      redirect_to [@topic, @post], notice: 'Post updated'
     else
       render :edit, alert: 'Post not updated; try again'
     end
@@ -50,11 +50,11 @@ class PostsController < ApplicationController
   end
 
   def ensure_topic
-    redirect_to topic_posts_path, alert: 'No such post' unless topic
+    redirect_to topics_path, alert: 'No such topic' unless topic
   end
 
   def topic
-    @topic ||= Topic.find(params[:topic_id])
+    @topic ||= Topic.find_by_id(params[:topic_id])
   end
   
   helper_method :post
