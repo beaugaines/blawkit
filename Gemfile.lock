@@ -48,6 +48,10 @@ GEM
     capybara-webkit (1.0.0)
       capybara (~> 2.0, >= 2.0.2)
       json
+    carrierwave (0.9.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
     choice (0.1.6)
     coderay (1.0.9)
     coffee-rails (3.2.2)
@@ -67,6 +71,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.4)
     erubis (2.7.0)
+    excon (0.27.6)
     execjs (2.0.2)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
@@ -77,6 +82,17 @@ GEM
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
+    fog (1.17.0)
+      builder
+      excon (~> 0.27.0)
+      formatador (~> 0.2.0)
+      mime-types
+      multi_json (~> 1.0)
+      net-scp (~> 1.1)
+      net-ssh (>= 2.1.3)
+      nokogiri (~> 1.5)
+      ruby-hmac
+    formatador (0.2.4)
     haml (4.0.3)
       tilt
     haml-rails (0.4)
@@ -100,8 +116,13 @@ GEM
       railties
     method_source (0.8.2)
     mime-types (1.25)
+    mini_magick (3.6.0)
+      subexec (~> 0.2.1)
     mini_portile (0.5.2)
     multi_json (1.8.2)
+    net-scp (1.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.7.0)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
@@ -165,6 +186,7 @@ GEM
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
     ruby-graphviz (1.0.9)
+    ruby-hmac (0.4.0)
     sass (3.2.12)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -177,6 +199,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    subexec (0.2.3)
     thor (0.18.1)
     thread_safe (0.1.3)
       atomic
@@ -190,6 +213,9 @@ GEM
     uglifier (2.3.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.3)
+      unf_ext
+    unf_ext (0.0.6)
     warden (1.2.3)
       rack (>= 1.0)
     xpath (2.0.0)
@@ -206,15 +232,18 @@ DEPENDENCIES
   cancan
   capybara
   capybara-webkit
+  carrierwave
   coffee-rails (~> 3.2.1)
   database_cleaner
   devise
   factory_girl_rails
   ffaker
   figaro
+  fog
   haml-rails
   jquery-rails
   meta_request
+  mini_magick
   pg
   pry-rails
   quiet_assets
@@ -227,4 +256,5 @@ DEPENDENCIES
   should_not
   toastr-rails
   uglifier (>= 1.0.3)
+  unf
   zurb-foundation

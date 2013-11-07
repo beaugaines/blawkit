@@ -11,8 +11,13 @@ gem 'cancan'
 gem 'jquery-rails'
 gem 'toastr-rails'
 gem 'figaro'
-gem 'ffaker'
 gem 'redcarpet'
+
+# image upload
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
+gem 'unf'
 
 # skip asset plugin injection on Heroku
 gem 'rails_12factor'
@@ -34,6 +39,7 @@ end
 
 # various
 gem 'quiet_assets'
+gem 'ffaker'
 
 group :test do
   gem 'rspec-rails'

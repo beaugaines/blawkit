@@ -10,7 +10,7 @@ Bloccit::Application.routes.draw do
     resources :posts, except: [:index]
   end
   
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
 
   resource :dashboard, only: [:show]
 

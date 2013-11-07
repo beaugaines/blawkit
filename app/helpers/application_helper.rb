@@ -13,10 +13,18 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def show_user_avatar
+    image_tag(current_user.avatar.medium.url) if current_user.avatar?
+  end
+  
+  def show_post_image post
+    image_tag(post.image.url) if post.image?
+  end
+
   def markdown text
     renderer = Redcarpet::Render::HTML.new
     extensions = { fenced_code_blocks: true, strikethrough: true }
-    redcarpet = Redcarpet::Markdown.new(renderer, extensions)
+    redcarpet ||= Redcarpet::Markdown.new(renderer, extensions)
     (redcarpet.render text).html_safe
   end
   
