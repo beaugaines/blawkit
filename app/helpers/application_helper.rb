@@ -16,7 +16,7 @@ module ApplicationHelper
   def show_user_avatar
     image_tag(current_user.avatar.medium.url) if current_user.avatar?
   end
-  
+
   def show_post_image post
     image_tag(post.image.url) if post.image?
   end
@@ -27,7 +27,19 @@ module ApplicationHelper
     redcarpet ||= Redcarpet::Markdown.new(renderer, extensions)
     (redcarpet.render text).html_safe
   end
-  
+
+  # custom will_paginate views
+
+  def will_paginate(collection_or_options = nil, options = {})
+    if collection_or_options.is_a?(Hash)
+      options, collection_or_options = collection_or_options, nil
+    unless options[:renderer]
+      options = options.merge renderer: FoundationLinkRenderer
+    end
+    super *[collection_or_options, options].compact
+  end
+
+
 
   def toastr_flash
     flash_messages = process_flash flash
@@ -50,5 +62,5 @@ module ApplicationHelper
     return :error if type == :alert
     return :error if type == :error
   end
-  
+
 end
