@@ -5,7 +5,7 @@
       = div_for(topic, class: 'topic') do
         = link_to topic.name, topic
         %small= topic.description
-    = will_paginate @topics
+    = foundation_paginate @topics
   .large-4.columns
     - if can? :create, topic
       = link_to 'new topic', new_topic_path, class: 'medium radius button'

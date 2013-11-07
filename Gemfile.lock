@@ -93,6 +93,7 @@ GEM
       nokogiri (~> 1.5)
       ruby-hmac
     formatador (0.2.4)
+    foundation-will_paginate (0.0.1)
     haml (4.0.3)
       tilt
     haml-rails (0.4)
@@ -241,6 +242,7 @@ DEPENDENCIES
   ffaker
   figaro
   fog
+  foundation-will_paginate
   haml-rails
   jquery-rails
   meta_request
