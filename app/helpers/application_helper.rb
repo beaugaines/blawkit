@@ -17,6 +17,9 @@ module ApplicationHelper
     image_tag(current_user.avatar.medium.url) if current_user.avatar?
   end
   
+  def show_post_image post
+    image_tag(post.image.url) if post.image?
+  end
 
   def markdown text
     renderer = Redcarpet::Render::HTML.new

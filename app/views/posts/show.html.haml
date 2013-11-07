@@ -6,7 +6,10 @@
       %p
         = show_user_avatar
         = "Posted by #{@post.user.username}"
-      %p= markdown @post.body
+
+      %p
+        = show_post_image(@post)
+        = markdown @post.body
       - if can? :edit, @post
         = link_to 'Edit post', edit_topic_post_path(@topic, @post), class: 'small radius button'
 
@@ -15,9 +18,9 @@
     - @post.comments.each do |comment|
       = div_for(comment, class: 'comment') do
         %p= "Posted by #{comment.username} #{time_ago_in_words(comment.created_at)} ago"
-        = comment.body
+        = markdown comment.body
     %p Add a comment
-    = form_for [@post, @comment] do |f|
+    = form_for [@post, @comment], remote: true do |f|
       = f.text_area :body, class: 'medium-text-box'
       = f.submit 'Add comment', class: 'medium radius secondary button'
 
