@@ -213,6 +213,9 @@ GEM
     uglifier (2.3.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.3)
+      unf_ext
+    unf_ext (0.0.6)
     warden (1.2.3)
       rack (>= 1.0)
     xpath (2.0.0)
@@ -253,4 +256,5 @@ DEPENDENCIES
   should_not
   toastr-rails
   uglifier (>= 1.0.3)
+  unf
   zurb-foundation

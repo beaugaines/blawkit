@@ -13,6 +13,11 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def show_user_avatar
+    image_tag(current_user.avatar.small.url) if current_user.avatar?
+  end
+  
+
   def markdown text
     renderer = Redcarpet::Render::HTML.new
     extensions = { fenced_code_blocks: true, strikethrough: true }

@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation,
-    :remember_me, :role, :avatar
+    :remember_me, :role, :avatar, :current_password
 
   validates :email, presence: true,
     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create },
@@ -28,6 +28,20 @@ class User < ActiveRecord::Base
 
   def role?(base_role)
     role.nil? ? false : ROLES.index(base_role.to_s) <= ROLES.index(role)
+  end
+
+  # Devise hack to allow edit of registrations without changing password
+  attr_accessor :current_password
+  def update_with_password(params={}) 
+    current_password = params.delete(:current_password)
+
+    if params[:password].blank? 
+      params.delete(:password) 
+      params.delete(:password_confirmation)
+    end 
+    update_attributes(params) 
+
+    clean_up_passwords
   end
 
   private
