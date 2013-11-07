@@ -30,6 +30,7 @@
             = markdown post.body
           - if can? :edit, post
             = link_to 'Edit post', edit_post_path(post), class: 'small radius button'
+      = foundation_paginate @posts
   - if can? :create, Post
     = link_to 'New Post', new_topic_post_path(@topic), class: 'medium radius button'
  

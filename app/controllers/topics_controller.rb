@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   before_filter :ensure_topic, only: [:show, :edit, :update]
 
   def index
-    @topics = Topic.includes(:posts)
+    @topics = Topic.paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -31,7 +31,7 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @posts = @topic.posts
+    @posts = @topic.posts.paginate(page: params[:page], per_page: 5)
   end
 
   def edit
