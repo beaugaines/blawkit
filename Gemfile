@@ -13,6 +13,8 @@ gem 'toastr-rails'
 gem 'figaro'
 gem 'ffaker'
 gem 'redcarpet'
+gem 'carrierwave'
+gem 'mini_magick'
 
 # skip asset plugin injection on Heroku
 gem 'rails_12factor'
