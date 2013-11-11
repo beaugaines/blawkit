@@ -1,8 +1,9 @@
 class CommentsController < ApplicationController
   before_filter :ensure_post
+  before_filter :ensure_topic
 
   def create
-    @comment = current_user.comments.build(params[:comment].merge!(post: @post))
+    @comment = current_user.comments.build(params[:comment].merge!(post: @post, topic: @topic))
     respond_to do |format|
       if @comment.save
         format.html { redirect_to topics_path, notice: 'Comment added' }
@@ -15,6 +16,11 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    
+  end
+  
+
   private
 
   def ensure_post
@@ -24,7 +30,17 @@ class CommentsController < ApplicationController
   def post
     @post ||= Post.find_by_id(params[:post_id])
   end
+
+  def ensure_topic
+    redirect_to topic_posts_path, alert: 'No such topic' unless topic
+  end
+
+  def post
+    @topic ||= Topic.find_by_id(params[:topic_id])
+  end
   
   helper_method :post
+  helper_method :topic
 
 end
+l
