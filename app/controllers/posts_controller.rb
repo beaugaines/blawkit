@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_filter :ensure_post, only: [:edit, :update, :show]
-  before_filter :ensure_topic
+  before_filter :ensure_topic, except: [:create]
   before_filter :authenticate_user!
 
   def show
@@ -17,7 +17,7 @@ class PostsController < ApplicationController
     @post.topic = @topic
     authorize! :create, @post, message: 'You need to be signed up to do that'
     if @post.save
-      redirect_to [@topic, @post], notice: 'Post saved'
+      redirect_to :back, notice: 'Post saved'
     else
       render :new, alert: 'There was an error saving your post.  Please try again.'
     end
@@ -37,6 +37,17 @@ class PostsController < ApplicationController
       render :edit, alert: 'Post not updated; try again'
     end
   end
+
+  def destroy
+    title = @post.title
+    authorize! :destroy, @post, message: 'You need to own the post to delete it'
+    if @post.destroy
+      redirect_to @topic, message: "#{name} was deleted successfully"
+    else
+      render :show, error: 'There was an error deleting the post'
+    end
+  end
+  
   
 
   private

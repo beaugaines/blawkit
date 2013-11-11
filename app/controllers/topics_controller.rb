@@ -38,6 +38,17 @@ class TopicsController < ApplicationController
     authorize! :update, @topic, message: 'You must be admin to do that'
   end
 
+  def destroy
+    name = @topic.name
+    authorize! :destroy, @topic, message: 'You need to be admin to do that'
+    if @topic.destroy
+      redirect_to topics_path, notice: "#{name} was deleted successfully"
+    else
+      render :show, error: 'There was an error deleting this topic'
+    end
+  end
+  
+
   private
 
   def ensure_topic

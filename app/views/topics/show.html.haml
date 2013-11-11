@@ -1,6 +1,8 @@
 %h2= "#{@topic.name.titleize}"
 - if can? :update, @topic
   = link_to 'Edit topic', edit_topic_path
+- if can? :destroy, @topic
+  = link_to 'Delete topic', @topic, method: :delete, class: 'small radius alert button', confirm: 'Are you sure you want to delete this topic?'
 %br/ 
 = link_to 'Return to topics...', topics_path
 
