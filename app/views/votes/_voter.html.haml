@@ -1,6 +1,6 @@
 %section.voter
   %p Vote!:
   %li
-    %i= link_to " ", '#', class: 'fi-plus'
+    %i= link_to " ", post_up_vote_path(post), class: 'fi-plus'
   %li
-    %i= link_to " ", '#', class: 'fi-minus'
+    %i= link_to " ", post_down_vote_path(post), class: 'fi-minus'
