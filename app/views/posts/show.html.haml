@@ -19,14 +19,11 @@
     / #comments-container
     /   = render 'posts/comments'
 
-    - @post.comments.each do |comment|
-      = div_for(comment, class: 'comment') do
-        %p= "Posted by #{comment.username} #{time_ago_in_words(comment.created_at)} ago"
-        = markdown comment.body
-    %p Add a comment
-
-    = form_for [@post, @comment], remote: true do |f|
-      = f.text_area :body, class: 'medium-text-box'
-      = f.submit 'Add comment', class: 'medium radius secondary button'
-
+    / - @post.comments.each do |comment|
+    /   = div_for(comment, class: 'comment') do
+    /     %p= "Posted by #{comment.username} #{time_ago_in_words(comment.created_at)} ago"
+    /     = markdown comment.body
+    / %p Add a comment
+    = render @comments
+    = render partial: 'comments/form', locals: { post: @post, comment: @comment }
 

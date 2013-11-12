@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
   before_filter :ensure_post, only: [:edit, :update, :show]
-  before_filter :ensure_topic, except: [:create]
+  before_filter :ensure_topic
   before_filter :authenticate_user!
 
   def show
     @comment = current_user.comments.build
+    @comments = @post.comments
   end
 
   def new

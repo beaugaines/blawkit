@@ -8,7 +8,7 @@ class Comment < ActiveRecord::Base
   default_scope order('created_at DESC')
 
   def user_avatar
-    user.avatar.small.url
+    user.avatar.small.url if user.avatar?
   end
   
 end
