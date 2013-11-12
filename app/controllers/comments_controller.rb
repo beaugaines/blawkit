@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :ensure_post
-  before_filter :ensure_topic
+  # before_filter :ensure_topic 
 
   def create
     @comment = current_user.comments.build(params[:comment].merge!(post: @post))
@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = @post.comments.find(params[:id])
-    authorize! :destroy, @comment, message: 'You need to own the comment to do delete it'
+    # authorize! :destroy, @comment, message: 'You need to own the comment to do delete it'
     if @comment.destroy
       redirect_to [@topic, @post], notice: 'Comment was removed'
     else
