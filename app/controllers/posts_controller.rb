@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :ensure_post, only: [:edit, :update, :show]
+  before_filter :ensure_post
   before_filter :ensure_topic
   before_filter :authenticate_user!
 
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
     title = @post.title
     authorize! :destroy, @post, message: 'You need to own the post to delete it'
     if @post.destroy
-      redirect_to @topic, message: "#{name} was deleted successfully"
+      redirect_to @topic, notice: "\"#{title}\" was deleted successfully"
     else
       render :show, error: 'There was an error deleting the post'
     end
