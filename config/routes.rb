@@ -4,12 +4,13 @@ Bloccit::Application.routes.draw do
 
   resources :posts do
     resources :comments, only: [:create, :destroy]
-      match '/up-vote', to: 'votes#up_vote', as: :up_vote
-      match '/down-vote', to: 'votes#down_vote', as: :down_vote
   end
 
   resources :topics do
-    resources :posts, except: [:index]
+    resources :posts, except: [:index] do
+      match '/up-vote', to: 'votes#up_vote', as: :up_vote
+      match '/down-vote', to: 'votes#down_vote', as: :down_vote
+    end
   end
   
   devise_for :users, controllers: { registrations: 'registrations' }
