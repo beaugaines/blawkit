@@ -5,6 +5,8 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :topic
 
+  after_create :create_vote
+
   mount_uploader :image, ImageUploader
 
   delegate :username, to: :user
@@ -30,7 +32,6 @@ class Post < ActiveRecord::Base
     update_attribute(:view_count, count)
     update_rank
   end
-  
 
   def points
     votes.sum(:value).to_i
@@ -41,5 +42,10 @@ class Post < ActiveRecord::Base
     new_rank = points + age + view_count + comments.count
     update_attribute(:rank, new_rank)
   end
+
+  def create_vote
+    user.votes.create(value: 1, post: self)
+  end
+  
   
 end
