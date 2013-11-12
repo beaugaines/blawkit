@@ -3,6 +3,7 @@
   .small-11.small-centered.columns
     = div_for(@post, class: 'post') do
       %h3= markdown @post.title
+      = render partial: 'votes/voter', locals: { topic: @topic, post: @post }
       %p
         = show_user_avatar
         = "Posted by #{@post.user.username}"

@@ -1,5 +1,8 @@
-%section 
-  %div
-    %i= link_to " ", '#', class: 'fi-arrow-up'
-  %div 
-    
+%section.voter
+  %p Votes:
+  %li
+    %i= link_to " ", '#', class: 'fi-plus'
+  %li
+    %strong= post.points
+  %li
+    %i= link_to " ", '#', class: 'fi-minus'
