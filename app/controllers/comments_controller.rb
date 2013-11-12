@@ -17,9 +17,15 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    
+    @comment = @post.comments.find(params[:id])
+    authorize! :destroy, @comment, message: 'You need to own the comment to do delete it'
+    if @comment.destroy
+      redirect_to [@topic, @post], notice: 'Comment was removed'
+    else
+      redirect_to [@topic, @post], error: 'Comment could not be deleted.  Try again'
+    end
   end
-  
+
 
   private
 
@@ -38,7 +44,7 @@ class CommentsController < ApplicationController
   def post
     @topic ||= Topic.find_by_id(params[:topic_id])
   end
-  
+
   helper_method :post
   helper_method :topic
 
