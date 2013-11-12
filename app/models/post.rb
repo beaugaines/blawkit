@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   attr_accessible :body, :title, :topic, :image, :user
   has_many :comments, dependent: :destroy
+  has_many :votes, dependent: :destroy
   belongs_to :user
   belongs_to :topic
 
