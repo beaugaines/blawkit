@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_filter :ensure_topic
 
   def create
-    @comment = current_user.comments.build(params[:comment].merge!(post: @post, topic: @topic))
+    @comment = current_user.comments.build(params[:comment].merge!(post: @post))
     respond_to do |format|
       if @comment.save
         format.html { redirect_to topics_path, notice: 'Comment added' }
@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
   private
 
   def ensure_post
-    redirect_to topic_posts_path, alert: 'No such post' unless post
+    redirect_to topics_path, alert: 'No such post' unless post
   end
 
   def post

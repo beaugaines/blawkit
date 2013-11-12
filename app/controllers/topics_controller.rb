@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_filter :ensure_topic, only: [:show, :edit, :update]
+  before_filter :ensure_topic, only: [:show, :edit, :update, :destroy]
 
   def index
     @topics = Topic.paginate(page: params[:page], per_page: 10)
@@ -42,7 +42,8 @@ class TopicsController < ApplicationController
     name = @topic.name
     authorize! :destroy, @topic, message: 'You need to be admin to do that'
     if @topic.destroy
-      redirect_to topics_path, notice: "#{name} was deleted successfully"
+      # redirect_to topics_path, notice: "#{name} was deleted successfully"
+      redirect_to topics_path, notice: "Topic was deleted successfully"
     else
       render :show, error: 'There was an error deleting this topic'
     end

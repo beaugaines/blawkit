@@ -16,14 +16,7 @@
         = link_to 'Delete Post', [@topic, @post], method: :delete, class: 'smdall radius button', confirm: 'Are you sure you want to delete this post?'
     %p Comments:
 
-    / #comments-container
-    /   = render 'posts/comments'
-
-    / - @post.comments.each do |comment|
-    /   = div_for(comment, class: 'comment') do
-    /     %p= "Posted by #{comment.username} #{time_ago_in_words(comment.created_at)} ago"
-    /     = markdown comment.body
-    / %p Add a comment
     = render @comments
+    %p Add a comment
     = render partial: 'comments/form', locals: { post: @post, comment: @comment }
 
