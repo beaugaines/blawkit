@@ -15,7 +15,7 @@ class VotesController < ApplicationController
   private
 
   def update_vote(value)
-    if @vote
+    if vote
       @vote.update_attribute(:value, value)
     else
       @vote = current_user.votes.create(value: value, post: @post)
@@ -28,13 +28,12 @@ class VotesController < ApplicationController
   end
 
   def set_associations
-    binding.pry
     @topic ||= Topic.find_by_id(params[:topic_id])
     @post ||= @topic.posts.find_by_id(params[:post_id])
   end
 
   def vote
-    @vote = @post.votes.find_by_user_id(current_user.id)
+    @vote ||= @post.votes.find_by_user_id(current_user.id)
   end
 
   helper_method :set_assocations
