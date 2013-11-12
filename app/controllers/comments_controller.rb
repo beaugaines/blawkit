@@ -49,4 +49,3 @@ class CommentsController < ApplicationController
   helper_method :topic
 
 end
-l

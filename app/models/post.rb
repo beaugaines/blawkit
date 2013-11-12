@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
 
   delegate :username, to: :user
 
-  default_scope order('created_at DESC')
+  default_scope order('rank DESC')
 
   validates :title, length: { minimum: 5 }, presence: true
   validates :body, length: { minimum: 20 }, presence: true
@@ -24,14 +24,21 @@ class Post < ActiveRecord::Base
     votes.where(value: -1).count
   end
 
+  def increment_view_count
+    count = self.view_count
+    count += 1
+    update_attribute(:view_count, count)
+    update_rank
+  end
+  
 
   def points
     votes.sum(:value).to_i
   end
 
   def update_rank
-    age = (self.created_at - Time.new(1970, 1, 1)) / 86400
-    new_rank = points + age
+    age = (self.created_at - Time.at(0)) / 86400
+    new_rank = points + age + view_count + comments.count
     update_attribute(:rank, new_rank)
   end
   

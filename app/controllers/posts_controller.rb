@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_filter :ensure_post
   before_filter :ensure_topic
   before_filter :authenticate_user!
+  after_filter :update_view_count, only: [:show]
 
   def show
     @comment = current_user.comments.build
@@ -52,6 +53,10 @@ class PostsController < ApplicationController
   
 
   private
+
+  def update_view_count
+    @post.increment_view_count
+  end
 
   def ensure_post
     redirect_to topics_path, alert: 'No such post' unless post

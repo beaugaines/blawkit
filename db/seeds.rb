@@ -73,6 +73,7 @@ rand(30..50).times do
   rand(0..1).times do
     c = p.comments.create(body: 'This comment is inappropriate and will be removed!', user: a)
   end
+  p.update_rank
 end
 
 puts 'Seed finished'
