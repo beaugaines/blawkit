@@ -26,6 +26,7 @@
             %br/ 
             = post.comments.count
             comments
+            = render partial: 'votes/voter', locals: { topic: @topic, post: post }
 
           %p
             = show_post_image(post)
