@@ -23,4 +23,10 @@ class Post < ActiveRecord::Base
   def down_votes
     votes.where(value: -1).count
   end
+
+
+  def points
+    votes.sum(:value).to_i
+  end
+  
 end
