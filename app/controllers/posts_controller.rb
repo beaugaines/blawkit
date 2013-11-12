@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
-  before_filter :ensure_post, only: [:edit, :update, :show]
+  before_filter :ensure_post
   before_filter :ensure_topic
   before_filter :authenticate_user!
 
   def show
     @comment = current_user.comments.build
+    @comments = @post.comments
   end
 
   def new
@@ -17,7 +18,7 @@ class PostsController < ApplicationController
     @post.topic = @topic
     authorize! :create, @post, message: 'You need to be signed up to do that'
     if @post.save
-      redirect_to [@topic, @post], notice: 'Post saved'
+      redirect_to :back, notice: 'Post saved'
     else
       render :new, alert: 'There was an error saving your post.  Please try again.'
     end
@@ -37,12 +38,23 @@ class PostsController < ApplicationController
       render :edit, alert: 'Post not updated; try again'
     end
   end
+
+  def destroy
+    title = @post.title
+    authorize! :destroy, @post, message: 'You need to own the post to delete it'
+    if @post.destroy
+      redirect_to @topic, notice: "\"#{title}\" was deleted successfully"
+    else
+      render :show, error: 'There was an error deleting the post'
+    end
+  end
+  
   
 
   private
 
   def ensure_post
-    redirect_to topic_posts_path, alert: 'No such post' unless post
+    redirect_to topics_path, alert: 'No such post' unless post
   end
 
   def post

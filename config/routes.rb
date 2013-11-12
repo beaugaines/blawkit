@@ -3,7 +3,7 @@ Bloccit::Application.routes.draw do
   get 'about', to: 'welcome#about'
 
   resources :posts do
-    resources :comments, shallow: true
+    resources :comments, only: [:create, :destroy]
   end
 
   resources :topics do
