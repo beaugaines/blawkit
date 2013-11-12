@@ -1,0 +1,7 @@
+- if can? :create, Vote
+  %section.voter
+    %p Vote!:
+    %li
+      %i= link_to " ", topic_post_up_vote_path(topic, post), class: 'fi-plus'
+    %li
+      %i= link_to " ", topic_post_down_vote_path(topic, post), class: 'fi-minus'

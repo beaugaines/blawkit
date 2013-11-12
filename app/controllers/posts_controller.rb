@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
-  before_filter :ensure_post
+  before_filter :ensure_post, except: [:new]
   before_filter :ensure_topic
   before_filter :authenticate_user!
+  after_filter :update_view_count, only: [:show]
 
   def show
     @comment = current_user.comments.build
@@ -18,7 +19,7 @@ class PostsController < ApplicationController
     @post.topic = @topic
     authorize! :create, @post, message: 'You need to be signed up to do that'
     if @post.save
-      redirect_to :back, notice: 'Post saved'
+      redirect_to [@topic, @post], notice: 'Post saved'
     else
       render :new, alert: 'There was an error saving your post.  Please try again.'
     end
@@ -48,10 +49,12 @@ class PostsController < ApplicationController
       render :show, error: 'There was an error deleting the post'
     end
   end
-  
-  
 
   private
+
+  def update_view_count
+    @post.increment_view_count
+  end
 
   def ensure_post
     redirect_to topics_path, alert: 'No such post' unless post
