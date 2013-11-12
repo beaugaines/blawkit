@@ -6,4 +6,9 @@ class Comment < ActiveRecord::Base
   delegate :username, to: :user
 
   default_scope order('created_at DESC')
+
+  def user_avatar
+    user.avatar.small.url
+  end
+  
 end
