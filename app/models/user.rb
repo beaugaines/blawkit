@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
 
   # Devise hack to allow edit of registrations without changing password
   attr_accessor :current_password
+
   def update_with_password(params={}) 
     current_password = params.delete(:current_password)
 
@@ -45,6 +46,11 @@ class User < ActiveRecord::Base
 
     clean_up_passwords
   end
+
+  def favorited post
+    favorites.find_by_post_id(post.id)
+  end
+  
 
   private
   
