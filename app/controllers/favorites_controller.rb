@@ -11,6 +11,16 @@ class FavoritesController < ApplicationController
     end
   end
 
+  def destroy
+    @favorite = current_user.favorites.find(params[:id])
+    if @favorite.destroy
+      redirect_to [@topic, @post], notice: 'You no likey'
+    else
+      redirect_to [@topic, @post], alert: 'Could not un-likey; try again'
+    end
+  end
+  
+
   private
 
   def setup

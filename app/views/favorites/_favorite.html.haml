@@ -1,9 +1,10 @@
-.favorite
-  - if favorite = current_user.favorited(post)
-    Favorited
-    = form_for [topic, post, favorite]
-  - else
-    Want to favorite this?
-    = form_for [topic, post, Favorite.new] do |f|
-      = button_tag type: 'Submit', class: 'tiny radius success button' do
-        %i.fi-like  &nbsp; Favorite
+- if can? :create, Favorite
+  .favorite
+    - if favorite = current_user.favorited(post)
+      = link_to [topic, post, favorite], class: 'tiny radius alert button', method: :delete do
+        %i.fi-dislike &nbsp; I no like
+
+    - else
+      = form_for [topic, post, Favorite.new] do |f|
+        = button_tag type: 'Submit', class: 'tiny radius success button' do
+          %i.fi-like  &nbsp; I like
