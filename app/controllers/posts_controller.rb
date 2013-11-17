@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   after_filter :update_view_count, only: [:show]
 
   def show
+    authorize! :read, @topic, message: 'You need to be signed in to do that'
     @comment = current_user.comments.build
     @comments = @post.comments
   end
