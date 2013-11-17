@@ -1,0 +1,16 @@
+!!! 5
+%html
+  %head
+    %meta{ content: "text/html;, charset=UTF-8", 'http-equiv' => "Content-Type" }
+  %body
+    %h1
+      New comment to 
+      = @post.title
+    %small
+      By:
+      = @comment.username
+    %p
+      = @comment.body
+    %p
+      = link_to 'View Comment on site', topic_post_url(@post.topic, @post, anchor: "comment-#{@comment_id}")
+    

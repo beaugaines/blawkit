@@ -3,6 +3,7 @@ class FavoritesController < ApplicationController
   before_filter :setup
 
   def create
+    authorize! :create, Favorite, message: "You can't do that"
     favorite = current_user.favorites.create(post: @post)
     if favorite.valid?
       redirect_to [@topic, @post], notice: 'Favorited post'
@@ -12,6 +13,7 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
+    authorize! :create, Favorite, message: "You can't do that"
     @favorite = current_user.favorites.find(params[:id])
     if @favorite.destroy
       redirect_to [@topic, @post], notice: 'You no likey'

@@ -1,0 +1,10 @@
+New comment to "#{@post.title}"
+= "=" * (@post.title.length + 12)
+/\#{"=" * (@post.title.length + 12)}
+
+By: "#{@comment.username}"
+
+"#{@comment.body}"
+
+Visit online at: #{topic_post_url(@post.topic, @post, anchor: "comment-#{@comment_id}")}
+

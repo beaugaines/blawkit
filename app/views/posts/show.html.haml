@@ -23,8 +23,8 @@
           = pluralize(@post.down_votes, 'down vote')
         = render partial: 'favorites/favorite', locals: { topic: @topic, post: @post }
     %p Comments:
-
-    = render @comments
+    .comments
+      = render @comments
     %p Add a comment
     = render partial: 'comments/form', locals: { post: @post, comment: @comment }
 
