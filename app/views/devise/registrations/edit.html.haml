@@ -34,6 +34,10 @@
     = f.file_field :avatar, class: 'small radius secondary button'
     // cache the image in case validations fail
     = f.hidden_field :avatar_cache
+  %div
+    = f.label :email_favorites
+    %br/
+    = f.check_box :email_favorites
   %div= f.submit "Update", class: 'medium radius success button'
 %h3 Cancel my account
 %p
