@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
   has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   before_create :set_member
 
@@ -15,7 +16,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation,
-    :remember_me, :role, :avatar, :current_password
+    :remember_me, :role, :avatar, :current_password, :email_favorites
 
   validates :email, presence: true,
     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create },
@@ -33,6 +34,7 @@ class User < ActiveRecord::Base
 
   # Devise hack to allow edit of registrations without changing password
   attr_accessor :current_password
+
   def update_with_password(params={}) 
     current_password = params.delete(:current_password)
 
@@ -44,6 +46,11 @@ class User < ActiveRecord::Base
 
     clean_up_passwords
   end
+
+  def favorited post
+    favorites.find_by_post_id(post.id)
+  end
+  
 
   private
   

@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
   attr_accessible :body, :title, :topic, :image, :user
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   belongs_to :user
   belongs_to :topic
 
@@ -28,8 +29,7 @@ class Post < ActiveRecord::Base
 
   def increment_view_count
     count = self.view_count
-    count += 1
-    update_attribute(:view_count, count)
+    update_attribute(:view_count, count.succ)
     update_rank
   end
 

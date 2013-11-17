@@ -8,10 +8,20 @@ class Comment < ActiveRecord::Base
 
   delegate :username, to: :user
 
+  after_create :send_favorite_emails
+
   default_scope order('created_at DESC')
 
   def user_avatar
     user.avatar.small.url if user.avatar?
+  end
+
+  private
+
+  def send_favorite_emails
+    post.favorites.each do |favorite|
+      FavoriteMailer.new_comment(favorite.user, self.post, self).deliver
+    end
   end
   
 end

@@ -1,18 +1,22 @@
 class CommentsController < ApplicationController
+  respond_to :html, :js
+
   before_filter :ensure_post
   # before_filter :ensure_topic 
 
   def create
     @comment = current_user.comments.build(params[:comment].merge!(post: @post))
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to topics_path, notice: 'Comment added' }
-        format.js
-        format.json { render action: 'show', status: :created }
-      else
-        format.html { render 'new', alert: 'Comment not saved; please try again' }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
+    if @comment.save
+      respond_with(@comment)
+   # respond_to do |format|
+      #if @comment.save
+        #format.html { redirect_to topics_path, notice: 'Comment added' }
+        #format.js
+        #format.json { render action: 'show', status: :created }
+      #else
+        #format.html { render 'new', alert: 'Comment not saved; please try again' }
+        #format.json { render json: @comment.errors, status: :unprocessable_entity }
+   #   end
     end
   end
 
@@ -42,7 +46,7 @@ class CommentsController < ApplicationController
   end
 
   def post
-    @topic ||= Topic.find_by_id(params[:topic_id])
+    @post ||= Post.find_by_id(params[:post_id])
   end
 
   helper_method :post
