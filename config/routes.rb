@@ -6,6 +6,8 @@ Bloccit::Application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
+  resources :users, only: [:show]
+
   resources :topics do
     resources :posts, except: [:index] do
       resources :favorites, only: [:create, :destroy]
