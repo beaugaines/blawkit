@@ -1,0 +1,32 @@
+= link_to 'Return to topic...', topic_path(@topic)
+.row
+  .small-11.small-centered.columns
+    = div_for(@post) do
+      %h3= markdown @post.title
+      %p
+        = show_user_avatar('80x80')
+        = "Posted by #{@post.user.username}"
+
+      %p
+        = show_post_image(@post)
+        = markdown @post.body
+      - if can? :edit, @post
+        = link_to 'Edit Post', edit_topic_post_path(@topic, @post), class: 'tiny radius button'
+      - if can? :destroy, @post
+        = link_to 'Delete Post', [@topic, @post], method: :delete, class: 'tiny radius alert button', confirm: 'Are you sure you want to delete this post?'
+      %section.votes 
+        = render partial: 'votes/voter', locals: { topic: @topic, post: @post }
+        %h3= pluralize(@post.points, 'point')
+        %small 
+          = pluralize(@post.up_votes, 'up vote')
+          |
+          = pluralize(@post.down_votes, 'down vote')
+        = render partial: 'favorites/favorite', locals: { topic: @topic, post: @post }
+    %p Comments:
+    .comments
+      /= render @comments
+      = render partial: 'comments/comment', collection: @comments
+
+    %p Add a comment
+    = render partial: 'comments/form', locals: { post: @post, comment: @comment }
+

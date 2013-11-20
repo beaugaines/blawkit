@@ -15,6 +15,7 @@ class Post < ActiveRecord::Base
   default_scope order('rank DESC')
 
   scope :visible_to, lambda { |user| user ? scoped : joins(:topic).where('topics.public' => true) }
+  scope :in_last_week, where('created_at > ?', 1.week.ago)
 
   validates :title, length: { minimum: 5 }, presence: true
   validates :body, length: { minimum: 20 }, presence: true
