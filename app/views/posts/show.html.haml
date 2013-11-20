@@ -1,10 +1,10 @@
 = link_to 'Return to topic...', topic_path(@topic)
 .row
   .small-11.small-centered.columns
-    = div_for(@post, class: 'post') do
+    = div_for(@post) do
       %h3= markdown @post.title
       %p
-        = show_user_avatar
+        = show_user_avatar('80x80')
         = "Posted by #{@post.user.username}"
 
       %p

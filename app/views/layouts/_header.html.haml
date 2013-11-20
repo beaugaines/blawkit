@@ -9,8 +9,9 @@
         /   = link_to 'About', welcome_about_path
         - if current_user.present?
           = link_to 'Sign out', destroy_user_session_path, method: :delete
-          = link_to 'Edit account', edit_user_registration_path
-          = show_user_avatar
+          = link_to 'Profile', current_user
+          = link_to 'Settings', edit_user_registration_path
+          = show_user_avatar('72x72')
         - else
           %ul.login
             %li#login

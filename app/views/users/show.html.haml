@@ -1,0 +1,42 @@
+%h3 Recent posts
+.row
+  .large-12.columns
+    %h1
+      = show_user_avatar
+    %p 
+      = pluralize(@user.posts.count, 'post')
+      = pluralize(@user.comments.count, 'comment')
+
+
+.section-container.auto{"data-section" => ""}
+  %section.active
+    %p.title{"data-section-title" => ""}
+      %a{href: "#panel1"} Posts
+    .content{"data-section-content" => ""}
+      - @posts.each do |post|
+        = div_for(post) do
+          %h3
+            = markdown post.title
+          %p
+            = show_user_avatar
+            = "Posted by #{post.user.username}"
+          %p
+            = show_post_image(post)
+            = markdown post.body
+
+  %section
+    %p.title{"data-section-title" => ""}
+      %a{href: "#panel2"} Comments
+    .content{"data-section-content" => ""}
+      - @user.comments.each do |comment|
+        = div_for(comment) do
+          %p
+            = "Post:  #{markdown(comment.post.title)}".html_safe
+          %br/ 
+          %p
+            = "Posted by:  #{comment.user.email}"
+          %br/ 
+          %p
+            = "Comment:  #{markdown(comment.body.html_safe)}".html_safe
+        - if can? :destroy, comment
+          = link_to 'Delete', [comment.post, comment], method: :delete
