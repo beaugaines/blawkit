@@ -55,6 +55,14 @@ class User < ActiveRecord::Base
     votes.find_by_post_id(post.id)
   end
 
+  def posts_count
+    posts.count
+  end
+  
+  def comments_count
+    comments.count
+  end
+
   def self.top_rated
     self.select('users.*').
     select('COUNT(DISTINCT comments.id) + COUNT(DISTINCT posts.id) AS rank').
@@ -63,7 +71,6 @@ class User < ActiveRecord::Base
     group('users.id').
     order('rank DESC')
   end
-  
   
   private
   
