@@ -46,7 +46,7 @@ end
 # various
 gem 'ffaker'
 
-group :test do
+group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
@@ -56,8 +56,3 @@ group :test do
   gem 'ffaker'
 end
 
-group :development, :test do
-  gem 'rspec-rails'
-  gem 'factory_girl'
-  gem 'database_cleaner'
-end
