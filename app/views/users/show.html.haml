@@ -38,3 +38,5 @@
           %br/ 
           %p
             = "Comment:  #{markdown(comment.body.html_safe)}".html_safe
+        - if can? :destroy, comment
+          = link_to 'Delete', [comment.post, comment], method: :delete
