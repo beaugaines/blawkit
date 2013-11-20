@@ -1,0 +1,12 @@
+= div_for(post) do
+  %h3= link_to markdown(post.title), [post.topic, post]
+  %p
+    = show_user_avatar('80x80')
+    = "Posted by #{post.user.username}"
+
+  %p
+    = show_post_image(post)
+    = "Topic:  #{post.topic.name}"
+    = markdown post.body
+
+
