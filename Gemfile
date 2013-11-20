@@ -55,3 +55,9 @@ group :test do
   gem 'should_not'
   gem 'ffaker'
 end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl'
+  gem 'database_cleaner'
+end
