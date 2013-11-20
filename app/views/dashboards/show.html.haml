@@ -7,8 +7,7 @@
   View all
   = link_to ' topics', topics_path
 
-%p 
-  Popular posts today:
-  = render partial: 'posts/post', collection: @posts
-  = foundation_paginate @posts
+%h3 Popular posts today:
+= render partial: 'posts/post', collection: @posts
+= foundation_paginate @posts
 

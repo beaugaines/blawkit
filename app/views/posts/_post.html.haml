@@ -8,5 +8,7 @@
     = show_post_image(post)
     = "Topic:  #{post.topic.name}"
     = markdown post.body
+  - if can? :edit, post
+    = link_to 'Edit post', edit_topic_post_path(post.topic, post), class: 'tiny radius button'
 
 
