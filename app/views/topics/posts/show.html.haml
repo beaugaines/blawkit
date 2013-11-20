@@ -24,7 +24,9 @@
         = render partial: 'favorites/favorite', locals: { topic: @topic, post: @post }
     %p Comments:
     .comments
-      = render @comments
+      /= render @comments
+      = render partial: 'comments/comment', collection: @comments
+
     %p Add a comment
     = render partial: 'comments/form', locals: { post: @post, comment: @comment }
 

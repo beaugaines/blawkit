@@ -1,0 +1,8 @@
+= div_for(user) do
+  = link_to user do
+    = show_user_avatar('80x80')
+  = user.email
+  %br/ 
+  %small 
+    = pluralize(user.posts_count, 'post')
+    = pluralize(user.comments_count, 'comment')

@@ -6,9 +6,10 @@
 %p
   View all
   = link_to ' topics', topics_path
-
 %p 
-  Popular posts today:
+  = link_to "Top users", users_path
 
-= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'small radius alert button'
+%h3 Popular posts today:
+= render partial: 'posts/post', collection: @posts
+= foundation_paginate @posts
 

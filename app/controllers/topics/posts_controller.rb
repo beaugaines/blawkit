@@ -1,4 +1,5 @@
-class PostsController < ApplicationController
+class Topics::PostsController < ApplicationController
+  
   before_filter :ensure_post, except: [:new, :create]
   before_filter :ensure_topic
   before_filter :authenticate_user!

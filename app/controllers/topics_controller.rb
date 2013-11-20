@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   before_filter :ensure_topic, only: [:show, :edit, :update, :destroy]
 
   def index
-    @topics = Topic.visible_to(current_user).paginate(page: params[:page], per_page: 10)
+    @topics = Topic.visible_to(current_user).paginate(page: params[:page], per_page: 5)
   end
 
   def new
@@ -31,7 +31,8 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @posts = @topic.posts.paginate(page: params[:page], per_page: 5)
+    @posts = @topic.posts.includes(:user).paginate(page: params[:page], per_page: 5)
+
   end
 
   def edit

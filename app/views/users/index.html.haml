@@ -1,0 +1,7 @@
+.row
+  .8-large.columns
+    %h2 Popular users
+    %p.lead Most active users:
+    = render partial: 'users/user', collection: @users
+    = foundation_paginate @users
+  .4-large.columns
