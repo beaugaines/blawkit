@@ -8,9 +8,10 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(params[:comment].merge!(post: @post))
     authorize! :create, @comment, message: 'You need to be signed in to do that'
     if @comment.save
-      flash[:notice] = 'Comment created'
+      @new_comment = Comment.new
     else
       flash[:error] = 'Comment not created.  Please try again'
+      redirect_to [@post.topic, @post]
     end
     
     respond_with(@comment) do |f|
@@ -25,6 +26,7 @@ class CommentsController < ApplicationController
       flash[:notice] = 'Comment was removed'
     else
       flash[:error] = 'Comment could not be deleted.  Try again'
+      redirect_to [@post.topic, @post]
     end
 
     respond_with(@comment) do |f|
