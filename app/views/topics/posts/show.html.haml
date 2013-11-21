@@ -26,8 +26,7 @@
     .comments
       = render partial: 'comments/comment', collection: @comments
 
-    = link_to 'Add Comment', '', id: 'add-comment'
+    = link_to 'Add Comment', '', id: 'reveal-comment'
     #new-comment.hide
-      %p Add a comment
       = render partial: 'comments/form', locals: { post: @post, comment: @comment }
 

@@ -3,7 +3,11 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  $('#add-comment').click ->
-    $('#new-comment').slideDown()
-    @hide()
-    false
+  $('#reveal-comment').click ->
+    selector = $('#new-comment')
+    if $(selector).is(":visible")
+      $(selector).slideUp()
+      false
+    else
+      $(selector).slideDown()
+      false
