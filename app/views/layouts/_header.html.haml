@@ -4,9 +4,6 @@
       = link_to(image_tag('bloccit.png', alt: 'Bloccit', class: 'logo rotate', size: '64x64'), root_path)
     .small-9.columns
       %nav.utility
-        / %p
-        /   = link_to 'Home', welcome_index_path
-        /   = link_to 'About', welcome_about_path
         - if current_user.present?
           = link_to 'Sign out', destroy_user_session_path, method: :delete
           = link_to 'Profile', current_user
@@ -28,8 +25,6 @@
                     %label
                       %input{checked: "checked", type: "checkbox"}/
                       Keep me signed in
-            / %li#signup
-            /   %a{href: ""} Sign up FREE
 
 
           
