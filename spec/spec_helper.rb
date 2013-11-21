@@ -20,12 +20,11 @@ RSpec.configure do |config|
   config.after(:each) { GC.enable }
 
   # clean up db
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
   config.before(:each) do
-    DatabaseCleaner.strategy = if example.metadata[:js]
-      :truncation
-    else
-      :transaction
-    end
     DatabaseCleaner.start
   end
 
