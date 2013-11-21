@@ -6,6 +6,7 @@ Bloccit::Application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
+  devise_for :users, controllers: { registrations: 'registrations' }
   resources :users, only: [:show, :index]
 
   resources :topics do
@@ -16,7 +17,6 @@ Bloccit::Application.routes.draw do
     end
   end
   
-  devise_for :users, controllers: { registrations: 'registrations' }
 
   resource :dashboard, only: [:show]
 
