@@ -3,6 +3,8 @@
 FactoryGirl.define do
   factory :post do
     title "MyString"
-    body "MyText"
+    body "Lorem ipsum dipsum oleafactorum nasuntorum"
+    user
+    topic
   end
 end

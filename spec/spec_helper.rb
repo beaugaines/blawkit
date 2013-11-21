@@ -20,12 +20,11 @@ RSpec.configure do |config|
   config.after(:each) { GC.enable }
 
   # clean up db
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
   config.before(:each) do
-    DatabaseCleaner.strategy = if example.metadata[:js]
-      :truncation
-    else
-      :transaction
-    end
     DatabaseCleaner.start
   end
 
@@ -38,7 +37,6 @@ RSpec.configure do |config|
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
 
-  config.use_transactional_fixtures = true
   config.infer_base_class_for_anonymous_controllers = false
   config.order = "random"
 

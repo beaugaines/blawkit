@@ -2,7 +2,7 @@
 .row
   .large-12.columns
     %h1
-      = show_user_avatar
+      = show_user_avatar(@user)
     %p 
       = pluralize(@user.posts.count, 'post')
       = pluralize(@user.comments.count, 'comment')
@@ -18,7 +18,7 @@
           %h3
             = markdown post.title
           %p
-            = show_user_avatar
+            = show_user_avatar(@user)
             = "Posted by #{post.user.username}"
           %p
             = show_post_image(post)

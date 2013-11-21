@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
+  include Gravtastic
+  gravtastic
+
   has_many :posts
   has_many :comments
   has_many :votes, dependent: :destroy

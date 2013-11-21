@@ -12,6 +12,7 @@ gem 'jquery-rails'
 gem 'toastr-rails'
 gem 'figaro'
 gem 'redcarpet'
+gem 'gravtastic'
 
 # image upload
 gem 'carrierwave'
@@ -46,7 +47,7 @@ end
 # various
 gem 'ffaker'
 
-group :test do
+group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
@@ -55,3 +56,4 @@ group :test do
   gem 'should_not'
   gem 'ffaker'
 end
+
