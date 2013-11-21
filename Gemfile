@@ -12,6 +12,7 @@ gem 'jquery-rails'
 gem 'toastr-rails'
 gem 'figaro'
 gem 'redcarpet'
+gem 'gravtastic'
 
 # image upload
 gem 'carrierwave'

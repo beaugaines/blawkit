@@ -13,11 +13,15 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
-  def show_user_avatar size=nil
-    if size
-      image_tag(current_user.avatar.url, size: size) if current_user.avatar?
+  def show_user_avatar(user, size=nil)
+    if user.avatar?
+      if size
+        image_tag(user.avatar.url, size: size)
+      else
+        image_tag(user.avatar.medium.url)
+      end
     else
-      image_tag(current_user.avatar.url) if current_user.avatar?
+      image_tag(user.gravatar_url(size: '80x80'))
     end
   end
 
