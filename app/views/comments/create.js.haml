@@ -1,5 +1,7 @@
 - if @comment.valid?
+  - @new_comment = Comment.new
   $('.comments').prepend("#{escape_javascript render(@comment)}");
-  $("html, body").animate({ scrollTop: $('h4.comments').offset().top}, "slow");
+  $('#new-comment').html("#{escape_javascript(render partial: 'comments/form', locals: { post: @post, comment: @new_comment } )}");
+  $("html, body").animate({ scrollTop: $('.comments-count').offset().top}, "slow");
 - else
   $('#new-comment').replaceWith("#{escape_javascript(render partial: 'comments/form', locals: { post: @post, comment: @comment} )}");
