@@ -23,7 +23,8 @@
   = csrf_meta_tag
 
 %body
-  = toastr_flash
+  .flash
+    = toastr_flash
   = render 'layouts/header'
   .main
     = yield

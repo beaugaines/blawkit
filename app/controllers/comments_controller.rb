@@ -6,27 +6,22 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.build(params[:comment].merge!(post: @post))
+    authorize! :create, @comment, message: 'You need to be signed in to do that'
     if @comment.save
-      respond_with(@comment)
-   # respond_to do |format|
-      #if @comment.save
-        #format.html { redirect_to topics_path, notice: 'Comment added' }
-        #format.js
-        #format.json { render action: 'show', status: :created }
-      #else
-        #format.html { render 'new', alert: 'Comment not saved; please try again' }
-        #format.json { render json: @comment.errors, status: :unprocessable_entity }
-   #   end
+      @new_comment = Comment.new
+      respond_with(@comment) do |f|
+        f.html { redirect_to [@post.topic, @post] }
+      end
     end
   end
 
   def destroy
     @comment = @post.comments.find(params[:id])
-    # authorize! :destroy, @comment, message: 'You need to own the comment to do delete it'
+    authorize! :destroy, @comment, message: 'You need to own the comment to do delete it'
     if @comment.destroy
-      redirect_to [@topic, @post], notice: 'Comment was removed'
-    else
-      redirect_to [@topic, @post], error: 'Comment could not be deleted.  Try again'
+      respond_with(@comment) do |f|
+        f.html { redirect_to [@post.topic, @post] }
+      end
     end
   end
 

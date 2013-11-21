@@ -1,1 +1,8 @@
-$('#comments').html("#{escape_javascript render(@comments)}");
+- if @comment.valid?
+  $('.comments').prepend("#{escape_javascript render(@comment)}");
+  $('#new-comment').html("#{escape_javascript(render partial: 'comments/form', locals: { post: @post, comment: @new_comment } )}");
+  toastr.success('Comment added');
+  $('.comments-count').html("#{@post.comments.count} Comments");
+  $("html, body").animate({ scrollTop: $('.comments-count').offset().top}, "slow");
+- else
+  $('#new-comment').replaceWith("#{escape_javascript(render partial: 'comments/form', locals: { post: @post, comment: @comment} )}");

@@ -17,7 +17,7 @@
         = div_for(post) do
           %h3= link_to(markdown(post.title), [@topic, post])
           %p
-            = show_user_avatar('80x80')
+            = show_user_avatar(post.user, '80x80')
             updated
             = time_ago_in_words(post.created_at)
             ago by
