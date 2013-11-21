@@ -1,1 +1,5 @@
-$('#comments').html("#{escape_javascript render(@comments)}");
+- if @comment.valid?
+  $('.comments').prepend("#{escape_javascript render(@comment)}");
+  $("html, body").animate({ scrollTop: $('h4.comments').offset().top}, "slow");
+- else
+  $('#new-comment').replaceWith("#{escape_javascript(render partial: 'comments/form', locals: { post: @post, comment: @comment} )}");

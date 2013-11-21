@@ -10,7 +10,7 @@ class Comment < ActiveRecord::Base
 
   after_create :send_favorite_emails
 
-  default_scope order('created_at DESC')
+  default_scope order('updated_at DESC')
 
   def user_avatar
     user.avatar.small.url if user.avatar?
