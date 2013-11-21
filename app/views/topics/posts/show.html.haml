@@ -4,7 +4,7 @@
     = div_for(@post) do
       %h3= markdown @post.title
       %p
-        = show_user_avatar('80x80')
+        = show_user_avatar(@post.user, '80x80')
         = "Posted by #{@post.user.username}"
 
       %p
@@ -24,9 +24,10 @@
         = render partial: 'favorites/favorite', locals: { topic: @topic, post: @post }
     %p Comments:
     .comments
-      /= render @comments
       = render partial: 'comments/comment', collection: @comments
 
-    %p Add a comment
-    = render partial: 'comments/form', locals: { post: @post, comment: @comment }
+    = link_to 'Add Comment', '', id: 'add-comment'
+    #new-comment.hide
+      %p Add a comment
+      = render partial: 'comments/form', locals: { post: @post, comment: @comment }
 

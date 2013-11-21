@@ -16,7 +16,7 @@
       - @posts.each do |post|
         = div_for(post) do
           %h3
-            = markdown post.title
+            = link_to (markdown post.title), [post.topic, post]
           %p
             = show_user_avatar(@user)
             = "Posted by #{post.user.username}"
