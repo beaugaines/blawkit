@@ -27,14 +27,10 @@ describe Vote do
 
   describe '#update_post' do
     it 'calls update_rank on post' do
-      Post.skip_callback(:create, :after, :create_vote)
-      p = Post.new
-      u = User.new
-      p.save(validate: false)
-      u.save(validate: false)
-      expect(p).to receive(:update_rank)
-      u.votes.create(value: 1, post: p)
-      Post.set_callback(:create, :after, :create_vote)
+      post = create(:post)
+      user = create(:user)
+      expect(post).to receive(:update_rank)
+      user.votes.create(value: 1, post: post)
     end
   end
 end
