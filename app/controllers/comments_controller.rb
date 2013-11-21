@@ -9,13 +9,9 @@ class CommentsController < ApplicationController
     authorize! :create, @comment, message: 'You need to be signed in to do that'
     if @comment.save
       @new_comment = Comment.new
-    else
-      flash[:error] = 'Comment not created.  Please try again'
-      redirect_to [@post.topic, @post]
-    end
-    
-    respond_with(@comment) do |f|
-      f.html { redirect_to [@post.topic, @post] }
+      respond_with(@comment) do |f|
+        f.html { redirect_to [@post.topic, @post] }
+      end
     end
   end
 
@@ -23,14 +19,9 @@ class CommentsController < ApplicationController
     @comment = @post.comments.find(params[:id])
     authorize! :destroy, @comment, message: 'You need to own the comment to do delete it'
     if @comment.destroy
-      flash[:notice] = 'Comment was removed'
-    else
-      flash[:error] = 'Comment could not be deleted.  Try again'
-      redirect_to [@post.topic, @post]
-    end
-
-    respond_with(@comment) do |f|
-      f.html { redirect_to [@post.topic, @post] }
+      respond_with(@comment) do |f|
+        f.html { redirect_to [@post.topic, @post] }
+      end
     end
   end
 
