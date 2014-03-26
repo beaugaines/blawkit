@@ -1,6 +1,6 @@
 # Welcome to Bloccit
 
-A Reddit clone - in Rails 3.2.14!
+A Reddit clone - in Rails 3.2.16!
 
 
 ## Setup
