@@ -48,8 +48,6 @@ module ApplicationHelper
   #   super *[collection_or_options, options].compact
   # end
 
-
-
   def toastr_flash
     flash_messages = process_flash flash
   end

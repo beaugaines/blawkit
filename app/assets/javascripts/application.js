@@ -17,3 +17,12 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+
+// basic jquery approach using marked.js - kinda nicer than crevasse in a way
+
+// $(document).ready(function() {
+//   $("#wiki_body").keyup(function() {
+//     $("#preview").html(marked($("#wiki_body").val()));
+//   });
+// });

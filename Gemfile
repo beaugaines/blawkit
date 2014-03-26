@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 # ruby version - to make Heroku happy
-ruby '2.0.0'
+ruby '2.1.1'
 
-gem 'rails', '3.2.14'
+gem 'rails', '3.2.16'
 gem 'haml-rails'
 gem 'pg'
 gem 'devise'
@@ -54,6 +54,5 @@ group :development, :test do
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'should_not'
-  gem 'ffaker'
 end
 

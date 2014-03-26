@@ -9,6 +9,6 @@ class Dashboard
   def username
     user.username
   end
-      
+
 end
   

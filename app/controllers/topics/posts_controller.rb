@@ -26,7 +26,6 @@ class Topics::PostsController < ApplicationController
       render :new, alert: 'There was an error saving your post.  Please try again.'
     end
   end
-  
 
   def edit
     render

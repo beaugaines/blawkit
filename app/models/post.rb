@@ -50,5 +50,4 @@ class Post < ActiveRecord::Base
     user.votes.create(value: 1, post: self)
   end
   
-  
 end

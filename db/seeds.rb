@@ -38,13 +38,13 @@ u2.skip_confirm
 
 me = User.new(username: 'beaugaines', email: 'beaugaines@yahoo.com', password: 'password')
 me.skip_confirm
-u.update_attribute(:role, 'admin')
-u.save
+me.update_attribute(:role, 'admin')
+me.save
 
 a = User.new(username: 'admin', email: 'admin@blawkit.com', password: 'password')
 a.skip_confirm
-u.update_attribute(:role, 'admin')
-u.save
+a.update_attribute(:role, 'admin')
+a.save
 
 users = [u, u2, me]
 
