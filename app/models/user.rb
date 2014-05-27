@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation,
-    :remember_me, :role, :avatar, :current_password, :email_favorites
+    :remember_me, :role, :avatar, :current_password, :email_favorites, :avatar_cache
 
   validates :email, presence: true,
     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create },

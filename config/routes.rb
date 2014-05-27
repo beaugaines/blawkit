@@ -20,7 +20,7 @@ Bloccit::Application.routes.draw do
   resource :dashboard, only: [:show]
 
   authenticated :user do
-    root to: 'dashboards#show'
+    root to: 'dashboards#show' 
   end
 
   root to: 'welcome#index'

@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
 
   delegate :username, to: :user
 
-  default_scope order('rank DESC')
+  default_scope order('rank ASC')
 
   scope :visible_to, lambda { |user| user ? scoped : joins(:topic).where('topics.public' => true) }
   scope :in_last_week, where('created_at < ?', 1.week.ago)
@@ -49,5 +49,10 @@ class Post < ActiveRecord::Base
   def create_vote
     user.votes.create(value: 1, post: self)
   end
+
+  def time_remaining
+    (Date.today - self.created_at.to_date).to_i
+  end
+  
   
 end
