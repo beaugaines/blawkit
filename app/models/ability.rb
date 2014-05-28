@@ -20,9 +20,10 @@ class Ability
     if user.role? :moderator
         can :destroy, Post
         can :destroy, Comment
-        can :edit, Wiki do |wiki|
-            user.wikis.editable_by_user.include?(wiki)
-        end
+        # exmaple of how to use blocks in cancan
+        #can :edit, Wiki do |wiki|
+            #user.wikis.editable_by_user.include?(wiki)
+        #end
     end
 
     # admin = God

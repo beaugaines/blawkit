@@ -5,10 +5,14 @@
       %h3= markdown @post.title
       %p
         = show_user_avatar(@post.user, '80x80')
-        = "Posted by #{@post.user.username}"
+        = "Posted by #{@post.username}"
 
       %p
         = show_post_image(@post)
+      %p
+        Attached audio:
+      %p
+        %audio{:src => "#{@post.audiofile.url}", height: '480', width: '720', controls: ''} 
         = markdown @post.body
       - if can? :edit, @post
         = link_to 'Edit Post', edit_topic_post_path(@topic, @post), class: 'tiny radius button'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131114153426) do
+ActiveRecord::Schema.define(:version => 20140528161747) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20131114153426) do
     t.string   "image"
     t.float    "rank"
     t.integer  "view_count", :default => 0, :null => false
+    t.string   "audiofile"
   end
 
   add_index "posts", ["topic_id"], :name => "index_posts_on_topic_id"
