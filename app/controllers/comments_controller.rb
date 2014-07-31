@@ -8,6 +8,11 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(params[:comment].merge!(post: @post))
     authorize! :create, @comment, message: 'You need to be signed in to do that'
     if @comment.save
+      redirect_to [@post.topic, @post], notice: 'Comment created'
+    else
+      redirect_to [@post.topic, @post], alert: 'Comment creation failed'
+    end
+
       @new_comment = Comment.new
       respond_with(@comment) do |f|
         f.html { redirect_to [@post.topic, @post] }

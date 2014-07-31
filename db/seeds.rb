@@ -5,6 +5,7 @@ Post.delete_all
 Comment.delete_all
 Topic.delete_all
 
+
 module SeedMethods
   def skip_confirm
     skip_confirmation!
