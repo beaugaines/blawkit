@@ -1,5 +1,8 @@
 module ApplicationHelper
 
+# Instead of creating a helper that takes an array of errors and block of HTML, create a helper that just takes an array of errors and returns a class string.
+# Then use ERB interpolation to assign the appropriate set of classes to the surrounding div.
+
   # for Devise modal signin/up
   def resource_name
     :user

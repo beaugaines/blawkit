@@ -2,7 +2,7 @@
 .row
   .large-8.columns
     - @topics.each do |topic|
-      = div_for(topic, class: 'topic') do
+      = div_for(topic) do
         = link_to topic.name, topic
         %small= topic.description
     = foundation_paginate @topics

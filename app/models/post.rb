@@ -26,7 +26,6 @@ class Post < ActiveRecord::Base
   def date_added
     created_at.strftime('%d %B, %Y')
   end
-  
 
   def up_votes
     votes.where(value: 1).count
@@ -59,6 +58,5 @@ class Post < ActiveRecord::Base
   def time_remaining
     (Date.today - self.created_at.to_date).to_i
   end
-  
   
 end
