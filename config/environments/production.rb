@@ -21,7 +21,7 @@ Bloccit::Application.configure do
   config.assets.digest = true
 
   # email config for heroku
-  config.action_mailer.default_url_options = { :host => 'blawkit.herokuapp.com' }  
+  config.action_mailer.default_url_options = { :host => 'still-reaches-6347.herokuapp.com' }  
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
