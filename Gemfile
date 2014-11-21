@@ -21,8 +21,8 @@ gem 'fog'
 gem 'unf'
 
 # pagination
-gem 'will_paginate'
-gem 'will_paginate-foundation'
+#gem 'will_paginate'
+#gem 'will_paginate-foundation'
 
 # skip asset plugin injection on Heroku
 gem 'rails_12factor'
