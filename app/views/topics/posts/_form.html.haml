@@ -1,11 +1,9 @@
-= simple_form_for [@topic, @post], html: {'data-abide' => ''} do |f|
+= form_for [@topic, @post], html: {'data-abide' => ''} do |f|
   %div 
     = f.label :title
     %br/ 
     = f.text_field :title, class: 'medium-text-field', required: true
     %small.error Title can't be blank
-  %div
-    <%= f.input :body, error_html: { class: 'has-error' } %>
   %div 
     = f.label :body
     %br/ 
