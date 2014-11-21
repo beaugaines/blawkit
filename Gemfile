@@ -37,6 +37,7 @@ group :assets do
 end
 
 group :development do
+  gem 'hirb'
   gem 'pry-rails'
   gem 'rails-erd'
   gem 'better_errors'
@@ -44,6 +45,7 @@ group :development do
   gem 'meta_request'
   gem 'quiet_assets'
 end
+
 
 # various
 gem 'ffaker'

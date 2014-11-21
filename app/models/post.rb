@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :body, :title, :topic, :image, :user
+  attr_accessible :body, :title, :topic, :image, :user, :audiofile
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -9,8 +9,9 @@ class Post < ActiveRecord::Base
   after_create :create_vote
 
   mount_uploader :image, ImageUploader
+  mount_uploader :audiofile, AudiofileUploader
 
-  delegate :username, to: :user
+  delegate :username, to: :user, allow_nil: true
 
   default_scope order('rank ASC')
 
@@ -21,6 +22,10 @@ class Post < ActiveRecord::Base
   validates :body, length: { minimum: 20 }, presence: true
   validates :topic, presence: true
   validates :user, presence: true
+
+  def date_added
+    created_at.strftime('%d %B, %Y')
+  end
 
   def up_votes
     votes.where(value: 1).count
@@ -53,6 +58,5 @@ class Post < ActiveRecord::Base
   def time_remaining
     (Date.today - self.created_at.to_date).to_i
   end
-  
   
 end

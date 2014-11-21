@@ -32,7 +32,6 @@ class TopicsController < ApplicationController
 
   def show
     @posts = @topic.posts.includes(:user).paginate(page: params[:page], per_page: 5)
-
   end
 
   def edit

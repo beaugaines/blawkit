@@ -1,9 +1,9 @@
 require 'ffaker'
 
-User.delete_all
-Post.delete_all
-Comment.delete_all
-Topic.delete_all
+User.destroy_all
+Post.destroy_all
+Comment.destroy_all
+Topic.destroy_all
 
 module SeedMethods
   def skip_confirm
@@ -75,6 +75,13 @@ rand(30..50).times do
   end
   p.update_rank
 end
+
+# rand(50..100).times do
+#   user = users.sample
+#   p = Post.all.sample 
+#   value = [1,-1].sample
+#   p.votes.create(value: value)
+# end
 
 puts 'Seed finished'
 

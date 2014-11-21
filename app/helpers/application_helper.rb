@@ -1,5 +1,8 @@
 module ApplicationHelper
 
+# Instead of creating a helper that takes an array of errors and block of HTML, create a helper that just takes an array of errors and returns a class string.
+# Then use ERB interpolation to assign the appropriate set of classes to the surrounding div.
+
   # for Devise modal signin/up
   def resource_name
     :user
@@ -21,7 +24,7 @@ module ApplicationHelper
         image_tag(user.avatar.medium.url)
       end
     else
-      image_tag(user.gravatar_url(size: '80x80'))
+      image_tag(user.gravatar_url(size: '50x50'))
     end
   end
 
