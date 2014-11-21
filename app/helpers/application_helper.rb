@@ -24,7 +24,7 @@ module ApplicationHelper
         image_tag(user.avatar.medium.url)
       end
     else
-      image_tag(user.gravatar_url(size: '80x80'))
+      image_tag(user.gravatar_url(size: '50x50'))
     end
   end
 

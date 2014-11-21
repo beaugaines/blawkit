@@ -2,7 +2,8 @@
   .row
     .small-3.columns
       .logo
-        = link_to(image_tag('bloccit.png', alt: 'Bloccit', class: 'logo', size: '64x64'), root_path)
+        = link_to(image_tag('bloccit.png', size: '64x64'), root_path)
+        /%h1= link_to 'B', root_path, class: 'logo'
     .small-9.columns
       %nav.utility
         - if current_user.present?
