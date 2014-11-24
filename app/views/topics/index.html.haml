@@ -1,3 +1,5 @@
+Page:
+= params[:page]
 %h1 Topics
 .row
   .large-8.columns
@@ -6,6 +8,7 @@
         = link_to topic.name, topic
         %small= topic.description
     /= foundation_paginate @topics
+    = my_paginate(@topics)
   .large-4.columns
     - if can? :create, topic
       = link_to 'new topic', new_topic_path, class: 'medium radius button'

@@ -3,6 +3,20 @@ module ApplicationHelper
 # Instead of creating a helper that takes an array of errors and block of HTML, create a helper that just takes an array of errors and returns a class string.
 # Then use ERB interpolation to assign the appropriate set of classes to the surrounding div.
 
+  def my_paginate(collection)
+    current_page = params[:page].present? ? params[:page] : '1'
+    previous_page = current_page.to_i - 1
+    next_page = current_page.to_i + 1
+    content_tag :div do
+      concat link_to("previous", "/#{controller_name}/?page=#{previous_page}") unless current_page == '1'
+      concat " "
+      concat "<em>#{current_page}</em>".html_safe
+      concat " "
+      concat link_to("next", "/#{controller_name}/?page=#{next_page}")
+    end
+  end
+
+
   # for Devise modal signin/up
   def resource_name
     :user
