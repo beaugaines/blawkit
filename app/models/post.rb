@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+  include Paginate
   attr_accessible :body, :title, :topic, :image, :user, :audiofile
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy

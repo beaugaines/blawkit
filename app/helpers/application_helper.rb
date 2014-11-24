@@ -8,7 +8,7 @@ module ApplicationHelper
     previous_page = current_page.to_i - 1
     next_page = current_page.to_i + 1
     content_tag :div do
-      concat link_to("previous", "/#{controller_name}/?page=#{previous_page}") unless current_page == '1'
+      concat link_to("previous", "/#{controller_name}/?page=#{previous_page}", class: 'disabled') unless current_page == '1'
       concat " "
       concat "<em>#{current_page}</em>".html_safe
       concat " "

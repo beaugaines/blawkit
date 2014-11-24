@@ -51,6 +51,9 @@ module Bloccit
     # don't access db or load models when precompiling assets
     config.assets.initialize_on_precompile = false
 
+    # load lib modules
+    config.autoload_paths += %W(#{config.root}/lib)
+
     # rspec config
     config.generators do |g|
         g.test_framework :rspec,
