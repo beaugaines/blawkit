@@ -52,12 +52,21 @@ class Post < ActiveRecord::Base
     update_attribute(:rank, new_rank)
   end
 
-  def create_vote
-    user.votes.create(value: 1, post: self)
-  end
-
   def time_remaining
     (Date.today - self.created_at.to_date).to_i
+  end
+
+  def save_with_initial_vote
+    ActiveRecord::Base.transaction do
+      save!
+      create_vote
+    end
+  end
+  
+  private
+
+  def create_vote
+    user.votes.create(value: 1, post: self)
   end
   
 end

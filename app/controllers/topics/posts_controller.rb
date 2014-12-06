@@ -20,7 +20,7 @@ class Topics::PostsController < ApplicationController
     @post = current_user.posts.build(params[:post])
     @post.topic = @topic
     authorize! :create, @post, message: 'You need to be signed up to do that'
-    if @post.save
+    if @post.save_with_initial_vote
       redirect_to [@topic, @post], notice: 'Post saved'
     else
       render :new, alert: 'There was an error saving your post.  Please try again.'
