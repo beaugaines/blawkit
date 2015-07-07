@@ -21,8 +21,8 @@ gem 'fog'
 gem 'unf'
 
 # pagination
-#gem 'will_paginate'
-#gem 'will_paginate-foundation'
+gem 'will_paginate'
+gem 'will_paginate-foundation'
 
 # skip asset plugin injection on Heroku
 gem 'rails_12factor'
@@ -32,7 +32,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'zurb-foundation'
-  gem 'foundation-will_paginate'
   gem 'foundation-icons-sass-rails'
 end
 
