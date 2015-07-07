@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 # ruby version - to make Heroku happy
 ruby '2.2.2'
 
-gem 'rails', '3.2.16'
+gem 'rails', '3.2.19'
 gem 'haml-rails'
 gem 'pg'
 gem 'devise'
@@ -24,8 +24,10 @@ gem 'unf'
 gem 'will_paginate'
 gem 'will_paginate-foundation'
 
-# skip asset plugin injection on Heroku
-gem 'rails_12factor'
+group :production do
+  gem 'puma'
+  gem 'rails_12factor'
+end
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -57,4 +59,3 @@ group :development, :test do
   gem 'capybara-webkit'
   gem 'should_not'
 end
-
