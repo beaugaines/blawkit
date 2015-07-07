@@ -96,6 +96,7 @@ GEM
     foundation-icons-sass-rails (3.0.0)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
+    foundation-will_paginate (0.0.1)
     gravtastic (3.2.6)
     haml (4.0.3)
       tilt
@@ -246,6 +247,7 @@ DEPENDENCIES
   figaro
   fog
   foundation-icons-sass-rails
+  foundation-will_paginate
   gravtastic
   haml-rails
   hirb
@@ -266,3 +268,6 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   unf
   zurb-foundation
+
+BUNDLED WITH
+   1.10.3

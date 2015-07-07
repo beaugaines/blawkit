@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 # ruby version - to make Heroku happy
-ruby '2.1.1'
+ruby '2.2.2'
 
 gem 'rails', '3.2.16'
 gem 'haml-rails'
@@ -32,7 +32,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'zurb-foundation'
-  # gem 'foundation-will_paginate'
+  gem 'foundation-will_paginate'
   gem 'foundation-icons-sass-rails'
 end
 

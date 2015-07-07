@@ -3,7 +3,7 @@ require 'ffaker'
 User.destroy_all
 Post.destroy_all
 Comment.destroy_all
-Topic.destroy_all
+# Topic.destroy_all
 
 module SeedMethods
   def skip_confirm
@@ -57,13 +57,15 @@ topics = []
   )
 end
 
-
 rand(30..50).times do
   topic = topics.sample
   user = users.sample
-  p = user.posts.create(title: Faker::HipsterIpsum.words(rand(1..10)).join(" ").titleize,
+  p = user.posts.build(title: Faker::HipsterIpsum.words(rand(1..10)).join(" ").titleize,
     body: Faker::HipsterIpsum.paragraphs(rand(1..4)).join("\n"),
-    topic: topic)
+    topic: topic
+  )
+  p.save
+
   p.set_random_created_at
  
   rand(3..5).times do

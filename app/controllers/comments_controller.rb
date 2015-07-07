@@ -15,20 +15,6 @@ class CommentsController < ApplicationController
     end
   end
   
-  def create
-    @post = Post.find(params[:post_id])
-    @topic = @post.topic
-    @comment = current_user.comments.new(comment_params)
-    @comment.post = @post
-    if @comment.save
-      redirect to [@topic, @post], notice: 'Comment created'
-    else
-      ...
-    end
-  end
-  
-
-
   def destroy
     @comment = @post.comments.find(params[:id])
     authorize! :destroy, @comment, message: 'You need to own the comment to do delete it'
@@ -38,7 +24,6 @@ class CommentsController < ApplicationController
       end
     end
   end
-
 
   private
 
